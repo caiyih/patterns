@@ -1,3 +1,4 @@
+# 简体中文翻译 状态：施工中
 # Rust Design Patterns
 
 An open source book about design patterns and idioms in the Rust programming

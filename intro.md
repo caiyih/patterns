@@ -1,33 +1,29 @@
-# Introduction
+# 简介
 
-## Participation
+## 参与
 
-If you are interested in contributing to this book, check out the
-[contribution guidelines](https://github.com/rust-unofficial/patterns/blob/master/CONTRIBUTING.md).
+如果你有兴趣为这本书做贡献，请查阅
+[贡献指南](https://github.com/rust-unofficial/patterns/blob/master/CONTRIBUTING.md).
 
-## Design patterns
+## 设计模式
 
-When developing programs, we have to solve many problems.
-A program can be viewed as a solution to a problem.
-It can also be viewed as a collection of solutions to many problems.
-All of these solutions work together to solve a bigger problem.
+在开发程序时，我们必须解决许多问题。
+一个程序可以被看作是一个问题的解决方案。
+它也可以被看作是许多问题的解决方案的集合。
+所有这些解决方案一起工作，以解决更大的问题。
 
-## Design patterns in Rust
+## Rust中的设计模式
 
-There are many problems that share the same form.
-Due to the fact that Rust is not object-oriented, design patterns vary with
-respect to other object-oriented programming languages.
-While the details are different, since they have the same form they can be
-solved using the same fundamental methods:
+有许多问题具有相同的形式。
+由于Rust不是面向对象的，设计模式与其他面向对象的编程语言不同。
+虽然细节不同，但由于它们具有相同的形式，因此可以用相同的基本方法来解决：
 
-- [Design patterns](./patterns/index.md) are methods to solve common problems
-  when writing software.
-- [Anti-patterns](./anti_patterns/index.md) are methods to solve these same
-  common problems. However, while design patterns give us benefits,
-  anti-patterns create more problems.
-- [Idioms](./idioms/index.md) are guidelines to follow when coding.
-  They are social norms of the community.
-  You can break them, but if you do you should have a good reason for it.
+- [设计模式](./patterns/index.md)是解决编写软件时常见问题的方法。
+- [反面模式](./anti_patterns/index.md)是解决这些相同的常见问题的方法。然而，在设计模式给我们带来好处的同时，反面模式却带来了更多的问题。
+- [习语](./idioms/index.md)是编码时要遵循的准则。
+  它们是社区的社会规范。
+  你可以打破它们，但如果你这样做，你应该有一个好的理由。
 
-TODO: Mention why Rust is a bit special - functional elements, type system,
-borrow checker
+TODO：提到为什么Rust有点特别--函数式元素、类型系统、借用检查器
+
+> Latest commit 9834f57 on 25 Aug 2021
