@@ -1,14 +1,14 @@
-# `mem::{take(_), replace(_)}` to keep owned values in changed enums
+# 在发生改变的枚举中使用`mem::{take(_), replace(_)}`来保留所有值
 
-## Description
+## 描述
 
-Say we have a `&mut MyEnum` which has (at least) two variants,
-`A { name: String, x: u8 }` and `B { name: String }`. Now we want to change
-`MyEnum::A` to a `B` if `x` is zero, while keeping `MyEnum::B` intact.
+假定我们有一个`&mut MyEnum`，它有（至少）两个变体，
+`A { name: String, x: u8 }`和`B { name: String }`。
+现在我们想如果`x`为零，把`MyEnum::A`改成`B`，同时保持`MyEnum::B`不变。
 
-We can do this without cloning the `name`.
+我们可以在不克隆`name`的情况下做到这一点。
 
-## Example
+## 例子
 
 ```rust
 use std::mem;
@@ -29,7 +29,7 @@ fn a_to_b(e: &mut MyEnum) {
 }
 ```
 
-This also works with more variants:
+这也适用于更多的变体：
 
 ```rust
 use std::mem;
@@ -54,60 +54,47 @@ fn swizzle(e: &mut MultiVariateEnum) {
 }
 ```
 
-## Motivation
+## 动机
 
-When working with enums, we may want to change an enum value in place, perhaps
-to another variant. This is usually done in two phases to keep the borrow
-checker happy. In the first phase, we observe the existing value and look at
-its parts to decide what to do next. In the second phase we may conditionally
-change the value (as in the example above).
+在处理枚举时，我们可能想在原地改变一个枚举值，也许是改变成另一个变体。 
+为了通过借用检查器，这通常分两个阶段进行。
+在第一阶段，我们观察现有值，看看它的各个部分，以决定下一步该做什么
+在第二阶段，我们可以有条件地改变该值（如上面的例子）。
 
-The borrow checker won't allow us to take out `name` of the enum (because
-*something* must be there.) We could of course `.clone()` name and put the clone
-into our `MyEnum::B`, but that would be an instance of the [Clone to satisfy
-the borrow checker](../anti_patterns/borrow_clone.md) anti-pattern. Anyway, we
-can avoid the extra allocation by changing `e` with only a mutable borrow.
+借用检查器不允许我们取走枚举类型的`name`（因为*something*必须存在。）
+尽管我们可以`.clone()``name`然后将克隆值放入`MyEnum::B`中，但这就是反面模式[通过Clone来满足借用检查器](../anti_patterns/borrow_clone.md) 的一个例子了。 
+无论如何，我们可以通过只用一个可变借用来改变`e`，进而避免额外的内存分配。
 
-`mem::take` lets us swap out the value, replacing it with it's default value,
-and returning the previous value. For `String`, the default value is an empty
-`String`, which does not need to allocate. As a result, we get the original
-`name` *as an owned value*. We can then wrap this in another enum.
+`mem::take`可以换掉这个值，用它的默认值代替，并返回之前的值。
+对于`String`，默认值是一个空的`String`，不需要分配内存。
+最终，我们得到了原来的`name`*作为一个所有值*。然后我们可以把它包在另一个枚举中。
 
-__NOTE:__ `mem::replace` is very similar, but allows us to specify what to
-replace the value with. An equivalent to our `mem::take` line would be
-`mem::replace(name, String::new())`.
+**注意：** `mem::replace`非常相似，但允许我们指定用什么来替换值。
+`mem::take`等价于`mem::replace(name, String::new())`.
 
-Note, however, that if we are using an `Option` and want to replace its
-value with a `None`, `Option`’s `take()` method provides a shorter and
-more idiomatic alternative.
+但是请注意，如果我们使用一个`Option`，并想用一个`None`来替换它的值，`Option`的`take()`方法提供了一个更短和更习惯的替代方法。
 
-## Advantages
+## 优势
 
-Look ma, no allocation! Also you may feel like Indiana Jones while doing it.
+没有内存分配。
 
-## Disadvantages
+## 劣势
 
-This gets a bit wordy. Getting it wrong repeatedly will make you hate the
-borrow checker. The compiler may fail to optimize away the double store,
-resulting in reduced performance as opposed to what you'd do in unsafe
-languages.
+表达比较啰嗦，经常搞错会让你讨厌借用检查器。 
+编译器可能无法优化掉双重存储，从而导致性能下降，这与你在不安全语言中的做法是不同的。
 
-Furthermore, the type you are taking needs to implement the [`Default`
-trait](./default.md). However, if the type you're working with doesn't
-implement this, you can instead use `mem::replace`.
+此外，你拿走的类型需要实现[`Default`trait](./default.md)。 
+如果你正在使用的类型没有实现，你可以使用`mem::replace`代替。
 
-## Discussion
+## 讨论
 
-This pattern is only of interest in Rust. In GC'd languages, you'd take the
-reference to the value by default (and the GC would keep track of refs), and in
-other low-level languages like C you'd simply alias the pointer and fix things
-later.
+这种模式只在Rust中才有意义。
+在有垃圾回收的语言中，默认取值的引用（GC会跟踪引用），而在其他低级语言如C语言中，可以简单地别名指针，并在以后修复。
 
-However, in Rust, we have to do a little more work to do this. An owned value
-may only have one owner, so to take it out, we need to put something back in –
-like Indiana Jones, replacing the artifact with a bag of sand.
+然而，在Rust中，我们必须多做一点工作才能做到这一点。一个所有值可能只有一个所有者，所以要把它取出来，我们需要把一些东西放回去。
 
-## See also
+## 参见
 
-This gets rid of the [Clone to satisfy the borrow checker](../anti_patterns/borrow_clone.md)
-anti-pattern in a specific case.
+在特定情况下，可以去除[通过Clone来满足借用检查器](../anti_patterns/borrow_clone.md)的反面模式。
+
+> Latest commit 9834f57 on 25 Aug 2021

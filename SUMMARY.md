@@ -39,8 +39,8 @@
     - [Object-Based APIs](./patterns/ffi/export.md)
     - [Type Consolidation into Wrappers](./patterns/ffi/wrappers.md)
 
-- [Anti-patterns](./anti_patterns/index.md)
-  - [Clone to satisfy the borrow checker](./anti_patterns/borrow_clone.md)
+- [反面模式](./anti_patterns/index.md)
+  - [通过Clone来满足借用检查器](./anti_patterns/borrow_clone.md)
   - [`#[deny(warnings)]`](./anti_patterns/deny-warnings.md)
   - [Deref Polymorphism](./anti_patterns/deref.md)
 

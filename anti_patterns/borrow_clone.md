@@ -1,14 +1,11 @@
-# Clone to satisfy the borrow checker
+# 通过Clone来满足借用检查器
 
-## Description
+## 描述
 
-The borrow checker prevents Rust users from developing otherwise unsafe code by
-ensuring that either: only one mutable reference exists, or potentially many but
-all immutable references exist. If the code written does not hold true to these
-conditions, this anti-pattern arises when the developer resolves the compiler
-error by cloning the variable.
+借用检查器通过确保以下两种情况来防止Rust用户开发不安全的代码：只存在一个可变引用，或者可能存在多个但都是不可变引用。
+如果编写的代码不符合这些条件，当开发者通过克隆变量来解决编译器错误时，就会出现这种反面模式。
 
-## Example
+## 例子
 
 ```rust
 // define any variable
@@ -27,47 +24,38 @@ let y = &mut (x.clone());
 println!("{}", x);
 ```
 
-## Motivation
+## 动机
 
-It is tempting, particularly for beginners, to use this pattern to resolve
-confusing issues with the borrow checker. However, there are serious
-consequences. Using `.clone()` causes a copy of the data to be made. Any changes
-between the two are not synchronized -- as if two completely separate variables
-exist.
+特别是对初学者来说，用这种模式来解决借用检查器的迷惑问题是很诱人的。
+然而，这有严重的后果。使用`.clone()`会导致数据被复制。
+两者之间的任何变化都是不同步的——就像存在两个完全独立的变量一样。
 
-There are special cases -- `Rc<T>` is designed to handle clones intelligently.
-It internally manages exactly one copy of the data, and cloning it will only
-clone the reference.
+有一些特殊情况——`Rc<T>`被设计用来智能地处理克隆。
+它在内部精确地管理着一份数据的副本，克隆它只会克隆引用。
 
-There is also `Arc<T>` which provides shared ownership of a value of type T
-that is allocated in the heap. Invoking `.clone()` on `Arc` produces a new `Arc`
-instance, which points to the same allocation on the heap as the source `Arc`,
-while increasing a reference count.
+还有`Arc<T>`，它提供了在堆中分配的T类型的值的共享所有权。
+对`Arc`调用`.clone()`会产生一个新的`Arc`实例，它指向与源`Arc`相同的堆上的分配，同时增加一个引用计数。
 
-In general, clones should be deliberate, with full understanding of the
-consequences. If a clone is used to make a borrow checker error disappear,
-that's a good indication this anti-pattern may be in use.
+一般来说，克隆应该是深思熟虑的，并充分了解后果。
+如果克隆被用来使借用检查器的错误消失，那就很可能说明这种反面模式可能在使用。
 
-Even though `.clone()` is an indication of a bad pattern, sometimes
-**it is fine to write inefficient code**, in cases such as when:
+尽管`.clone()`暗示着不好的模式，但有时**写低效的代码也是可以的**，例如在以下情况下：
 
-- the developer is still new to ownership
-- the code doesn't have great speed or memory constraints
-  (like hackathon projects or prototypes)
-- satisfying the borrow checker is really complicated, and you prefer to
-  optimize readability over performance
+- 开发者仍然对所有权不熟悉
+- 代码没有很大的速度或内存限制（如黑客马拉松项目或原型）
+- 满足借用检查器相当复杂，而你更愿意优化可读性而不是性能
 
-If an unnecessary clone is suspected, The [Rust Book's chapter on Ownership](https://doc.rust-lang.org/book/ownership.html)
-should be understood fully before assessing whether the clone is required or not.
+如果怀疑有不必要的克隆，在评估是否需要克隆之前，应该充分理解[Rust Book的所有权章节](https://doc.rust-lang.org/book/ownership.html)
 
-Also be sure to always run `cargo clippy` in your project, which will detect some
-cases in which `.clone()` is not necessary, like [1](https://rust-lang.github.io/rust-clippy/master/index.html#redundant_clone),
+此外，请确保在你的项目中始终运行`cargo clippy`，它将检测到一些不需要`.clone()`的情况，例如[1](https://rust-lang.github.io/rust-clippy/master/index.html#redundant_clone),
 [2](https://rust-lang.github.io/rust-clippy/master/index.html#clone_on_copy),
-[3](https://rust-lang.github.io/rust-clippy/master/index.html#map_clone) or [4](https://rust-lang.github.io/rust-clippy/master/index.html#clone_double_ref).
+[3](https://rust-lang.github.io/rust-clippy/master/index.html#map_clone)或[4](https://rust-lang.github.io/rust-clippy/master/index.html#clone_double_ref).
 
-## See also
+## 参见
 
-- [`mem::{take(_), replace(_)}` to keep owned values in changed enums](../idioms/mem-replace.md)
-- [`Rc<T>` documentation, which handles .clone() intelligently](http://doc.rust-lang.org/std/rc/)
-- [`Arc<T>` documentation, a thread-safe reference-counting pointer](https://doc.rust-lang.org/std/sync/struct.Arc.html)
-- [Tricks with ownership in Rust](https://web.archive.org/web/20210120233744/https://xion.io/post/code/rust-borrowchk-tricks.html)
+- [在发生改变的枚举中使用`mem::{take(_), replace(_)}`来保留所有值](../idioms/mem-replace.md)
+- [`Rc<T>`文档，用于智能地处理.clone()](http://doc.rust-lang.org/std/rc/)
+- [`Arc<T>`文档，线程安全的引用计数指针](https://doc.rust-lang.org/std/sync/struct.Arc.html)
+- [Rust中关于所有权的技巧](https://web.archive.org/web/20210120233744/https://xion.io/post/code/rust-borrowchk-tricks.html)
+
+> Latest commit 9834f57 on 25 Aug 2021
