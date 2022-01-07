@@ -1,8 +1,8 @@
 # Summary
 
 - [简介](./intro.md)
-- [Idioms](./idioms/index.md)
-  - [Use borrowed types for arguments](./idioms/coercion-arguments.md)
+- [习语](./idioms/index.md)
+  - [使用借用类型作为参数](./idioms/coercion-arguments.md)
   - [Concatenating Strings with `format!`](./idioms/concat-format.md)
   - [Constructor](./idioms/ctor.md)
   - [The `Default` Trait](./idioms/default.md)
