@@ -13,7 +13,7 @@ create-missing = false
 edition = "2018"
 
 [output.html]
-default-theme = "rust"
+default-theme = "light"
 git-repository-url = "https://github.com/Fomalhauthmj/patterns"
 git-repository-icon = "fa-github"
 
