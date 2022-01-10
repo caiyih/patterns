@@ -1,32 +1,26 @@
-# Command
+# 命令
 
-## Description
+## 描述
 
-The basic idea of the Command pattern is to separate out actions into its own
-objects and pass them as parameters.
+命令模式的基本思想是将行动分离成它自己的对象，并将它们作为参数传递。
 
-## Motivation
+## 动机
 
-Suppose we have a sequence of actions or transactions encapsulated as objects.
-We want these actions or commands to be executed or invoked in some order later
-at different time. These commands may also be triggered as a result of some event.
-For example, when a user pushes a button, or on arrival of a data packet.
-In addition, these commands might be undoable. This may come in useful for
-operations of an editor. We might want to store logs of executed commands so that
-we could reapply the changes later if the system crashes.
+假设我们有一连串的行动或事务被封装为对象。
+我们希望这些行动或命令之后在不同的时间以某种顺序被执行或调用。
+这些命令也可能因某些事件而被触发。
+例如，当用户按下一个按钮，或在一个数据包到达时。
+此外，这些命令可能是可撤销的。这可能对编辑器的操作很有用。 
+我们可能想存储已执行命令的日志，这样，如果系统崩溃，我们可以之后重新应用这些变化。
 
-## Example
+## 例子
 
-Define two database operations `create table` and `add field`. Each of these
-operations is a command which knows how to undo the command, e.g., `drop table`
-and `remove field`. When a user invokes a database migration operation then each
-command is executed in the defined order, and when the user invokes the rollback
-operation then the whole set of commands is invoked in reverse order.
+定义两个数据库操作`create table`和`add field`。每一个操作都是一个可撤销的命令，例如，`drop table`和`remove field`。
+当用户调用数据库迁移操作时，那么每条命令都按照定义的顺序执行，当用户调用回滚操作时，那么整个命令集将以相反的顺序调用。
 
-## Approach: Using trait objects
+## 方法：使用 trait 对象
 
-We define a common trait which encapsulates our command with two operations
-`execute` and `rollback`. All command `structs` must implement this trait.
+我们定义了一个共同的trait，用两个操作`execute`和`rollback`来封装我们的命令。所有的命令`structs`必须实现这个trait。
 
 ```rust
 pub trait Migration {
@@ -92,13 +86,10 @@ fn main() {
 }
 ```
 
-## Approach: Using function pointers
+## 方法：使用函数指针
 
-We could follow another approach by creating each individual command as
-a different function and store function pointers to invoke these functions later
-at a different time. Since function pointers implement all three traits `Fn`,
-`FnMut`, and `FnOnce` we could as well pass and store closures instead of
-function pointers.
+我们可以遵循另一种方法，将每个单独的命令创建为不同的函数，并存储函数指针，以便以后在不同的时间调用这些函数。
+由于函数指针实现了所有三个trait `Fn`,`FnMut`和`FnOnce`，我们也可以传递和存储闭包而不是函数指针。
 
 ```rust
 type FnPtr = fn() -> String;
@@ -147,10 +138,9 @@ fn main() {
 }
 ```
 
-## Approach: Using `Fn` trait objects
+## 方法：使用 `Fn` trait 对象
 
-Finally, instead of defining a common command trait we could store
-each command implementing the `Fn` trait separately in vectors.
+最后，我们可以将实现`Fn`trait的每个命令分别存储在向量中，而不是定义一个共同的命令trait。
 
 ```rust
 type Migration<'a> = Box<dyn Fn() -> &'a str>;
@@ -200,23 +190,20 @@ fn main() {
 }
 ```
 
-## Discussion
+## 讨论
 
-If our commands are small and may be defined as functions or passed as a closure
-then using function pointers might be preferable since it does not exploit
-dynamic dispatch. But if our command is a whole struct with a bunch of functions
-and variables defined as seperated module then using trait objects would be
-more suitable. A case of application can be found in [`actix`](https://actix.rs/),
-which uses trait objects when it registers a handler function for routes.
-In case of using `Fn` trait objects we can create and use commands in the same
-way as we used in case of function pointers.
+如果我们的命令很小，并且可以被定义为函数或者作为一个闭包传递，那么使用函数指针可能是更好的，因为它没有利用动态分发。 
+但如果我们的命令是一个完整的结构体，其中有一堆函数和变量被定义为独立的模块，那么使用trait对象会更合适。
+应用案例可以在[`actix`](https://actix.rs/)中找到，它在为路由注册处理函数时使用trait对象。
+在使用`Fn`trait对象的情况下，我们可以用与函数指针相同的方式创建和使用命令。
 
-As performance, there is always a trade-off between performance and code
-simplicity and organisation. Static dispatch gives faster performance, while
-dynamic dispatch provides flexibility when we structure our application.
+关于性能，在性能和代码的简单性和组织性之间总是有一个权衡。
+静态分发可以提供更快的性能，而动态分发在我们构造应用程序时提供了灵活性。
 
-## See also
+## 参见
 
-- [Command pattern](https://en.wikipedia.org/wiki/Command_pattern)
+- [命令模式](https://en.wikipedia.org/wiki/Command_pattern)
 
-- [Another example for the `command` pattern](https://web.archive.org/web/20210223131236/https://chercher.tech/rust/command-design-pattern-rust)
+- [命令模式的另一个例子](https://web.archive.org/web/20210223131236/https://chercher.tech/rust/command-design-pattern-rust)
+
+> Latest commit 9834f57 on 25 Aug 2021
