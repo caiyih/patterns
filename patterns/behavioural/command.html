@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Command - Rust Design Patterns</title>
+        <title>命令 - Rust Design Patterns</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/index.html"><strong aria-hidden="true">3.</strong> Design Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> Behavioural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/command.html" class="active"><strong aria-hidden="true">3.1.1.</strong> Command</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> Interpreter</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> Newtype</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII Guards</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> Strategy</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> Visitor</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> Creational</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> Builder</a></li><li class="chapter-item expanded "><a href="../../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> Structural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> Compose Structs</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> Prefer Small Crates</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> Contain unsafety in small modules</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/command.html" class="active"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> Newtype</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII Guards</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> Strategy</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> Visitor</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> Creational</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> Builder</a></li><li class="chapter-item expanded "><a href="../../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> Structural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> Compose Structs</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> Prefer Small Crates</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> Contain unsafety in small modules</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -146,27 +146,21 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="command"><a class="header" href="#command">Command</a></h1>
-<h2 id="description"><a class="header" href="#description">Description</a></h2>
-<p>The basic idea of the Command pattern is to separate out actions into its own
-objects and pass them as parameters.</p>
-<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
-<p>Suppose we have a sequence of actions or transactions encapsulated as objects.
-We want these actions or commands to be executed or invoked in some order later
-at different time. These commands may also be triggered as a result of some event.
-For example, when a user pushes a button, or on arrival of a data packet.
-In addition, these commands might be undoable. This may come in useful for
-operations of an editor. We might want to store logs of executed commands so that
-we could reapply the changes later if the system crashes.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>Define two database operations <code>create table</code> and <code>add field</code>. Each of these
-operations is a command which knows how to undo the command, e.g., <code>drop table</code>
-and <code>remove field</code>. When a user invokes a database migration operation then each
-command is executed in the defined order, and when the user invokes the rollback
-operation then the whole set of commands is invoked in reverse order.</p>
-<h2 id="approach-using-trait-objects"><a class="header" href="#approach-using-trait-objects">Approach: Using trait objects</a></h2>
-<p>We define a common trait which encapsulates our command with two operations
-<code>execute</code> and <code>rollback</code>. All command <code>structs</code> must implement this trait.</p>
+                        <h1 id="命令"><a class="header" href="#命令">命令</a></h1>
+<h2 id="描述"><a class="header" href="#描述">描述</a></h2>
+<p>命令模式的基本思想是将行动分离成它自己的对象，并将它们作为参数传递。</p>
+<h2 id="动机"><a class="header" href="#动机">动机</a></h2>
+<p>假设我们有一连串的行动或事务被封装为对象。
+我们希望这些行动或命令之后在不同的时间以某种顺序被执行或调用。
+这些命令也可能因某些事件而被触发。
+例如，当用户按下一个按钮，或在一个数据包到达时。
+此外，这些命令可能是可撤销的。这可能对编辑器的操作很有用。 
+我们可能想存储已执行命令的日志，这样，如果系统崩溃，我们可以之后重新应用这些变化。</p>
+<h2 id="例子"><a class="header" href="#例子">例子</a></h2>
+<p>定义两个数据库操作<code>create table</code>和<code>add field</code>。每一个操作都是一个可撤销的命令，例如，<code>drop table</code>和<code>remove field</code>。
+当用户调用数据库迁移操作时，那么每条命令都按照定义的顺序执行，当用户调用回滚操作时，那么整个命令集将以相反的顺序调用。</p>
+<h2 id="方法使用-trait-对象"><a class="header" href="#方法使用-trait-对象">方法：使用 trait 对象</a></h2>
+<p>我们定义了一个共同的trait，用两个操作<code>execute</code>和<code>rollback</code>来封装我们的命令。所有的命令<code>structs</code>必须实现这个trait。</p>
 <pre><pre class="playground"><code class="language-rust edition2018">pub trait Migration {
     fn execute(&amp;self) -&gt; &amp;str;
     fn rollback(&amp;self) -&gt; &amp;str;
@@ -229,12 +223,9 @@ fn main() {
     assert_eq!(vec![&quot;remove field&quot;, &quot;drop table&quot;], schema.rollback());
 }
 </code></pre></pre>
-<h2 id="approach-using-function-pointers"><a class="header" href="#approach-using-function-pointers">Approach: Using function pointers</a></h2>
-<p>We could follow another approach by creating each individual command as
-a different function and store function pointers to invoke these functions later
-at a different time. Since function pointers implement all three traits <code>Fn</code>,
-<code>FnMut</code>, and <code>FnOnce</code> we could as well pass and store closures instead of
-function pointers.</p>
+<h2 id="方法使用函数指针"><a class="header" href="#方法使用函数指针">方法：使用函数指针</a></h2>
+<p>我们可以遵循另一种方法，将每个单独的命令创建为不同的函数，并存储函数指针，以便以后在不同的时间调用这些函数。
+由于函数指针实现了所有三个trait <code>Fn</code>,<code>FnMut</code>和<code>FnOnce</code>，我们也可以传递和存储闭包而不是函数指针。</p>
 <pre><pre class="playground"><code class="language-rust edition2018">type FnPtr = fn() -&gt; String;
 struct Command {
     execute: FnPtr,
@@ -280,9 +271,8 @@ fn main() {
     assert_eq!(vec![&quot;remove field&quot;, &quot;drop table&quot;], schema.rollback());
 }
 </code></pre></pre>
-<h2 id="approach-using-fn-trait-objects"><a class="header" href="#approach-using-fn-trait-objects">Approach: Using <code>Fn</code> trait objects</a></h2>
-<p>Finally, instead of defining a common command trait we could store
-each command implementing the <code>Fn</code> trait separately in vectors.</p>
+<h2 id="方法使用-fn-trait-对象"><a class="header" href="#方法使用-fn-trait-对象">方法：使用 <code>Fn</code> trait 对象</a></h2>
+<p>最后，我们可以将实现<code>Fn</code>trait的每个命令分别存储在向量中，而不是定义一个共同的命令trait。</p>
 <pre><pre class="playground"><code class="language-rust edition2018">type Migration&lt;'a&gt; = Box&lt;dyn Fn() -&gt; &amp;'a str&gt;;
 
 struct Schema&lt;'a&gt; {
@@ -329,27 +319,25 @@ fn main() {
     assert_eq!(vec![&quot;remove field&quot;, &quot;drop table&quot;], schema.rollback());
 }
 </code></pre></pre>
-<h2 id="discussion"><a class="header" href="#discussion">Discussion</a></h2>
-<p>If our commands are small and may be defined as functions or passed as a closure
-then using function pointers might be preferable since it does not exploit
-dynamic dispatch. But if our command is a whole struct with a bunch of functions
-and variables defined as seperated module then using trait objects would be
-more suitable. A case of application can be found in <a href="https://actix.rs/"><code>actix</code></a>,
-which uses trait objects when it registers a handler function for routes.
-In case of using <code>Fn</code> trait objects we can create and use commands in the same
-way as we used in case of function pointers.</p>
-<p>As performance, there is always a trade-off between performance and code
-simplicity and organisation. Static dispatch gives faster performance, while
-dynamic dispatch provides flexibility when we structure our application.</p>
-<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<h2 id="讨论"><a class="header" href="#讨论">讨论</a></h2>
+<p>如果我们的命令很小，并且可以被定义为函数或者作为一个闭包传递，那么使用函数指针可能是更好的，因为它没有利用动态分发。 
+但如果我们的命令是一个完整的结构体，其中有一堆函数和变量被定义为独立的模块，那么使用trait对象会更合适。
+应用案例可以在<a href="https://actix.rs/"><code>actix</code></a>中找到，它在为路由注册处理函数时使用trait对象。
+在使用<code>Fn</code>trait对象的情况下，我们可以用与函数指针相同的方式创建和使用命令。</p>
+<p>关于性能，在性能和代码的简单性和组织性之间总是有一个权衡。
+静态分发可以提供更快的性能，而动态分发在我们构造应用程序时提供了灵活性。</p>
+<h2 id="参见"><a class="header" href="#参见">参见</a></h2>
 <ul>
 <li>
-<p><a href="https://en.wikipedia.org/wiki/Command_pattern">Command pattern</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Command_pattern">命令模式</a></p>
 </li>
 <li>
-<p><a href="https://web.archive.org/web/20210223131236/https://chercher.tech/rust/command-design-pattern-rust">Another example for the <code>command</code> pattern</a></p>
+<p><a href="https://web.archive.org/web/20210223131236/https://chercher.tech/rust/command-design-pattern-rust">命令模式的另一个例子</a></p>
 </li>
 </ul>
+<blockquote>
+<p>Latest commit 9834f57 on 25 Aug 2021</p>
+</blockquote>
 
                     </main>
 
