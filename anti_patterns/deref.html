@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Deref Polymorphism - Rust Design Patterns</title>
+        <title>解引用多态性 - Rust Design Patterns</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> Design Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> Behavioural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> Command</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> Interpreter</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> Newtype</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII Guards</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> Strategy</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> Visitor</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> Creational</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> Builder</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> Structural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> Compose Structs</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> Prefer Small Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> Contain unsafety in small modules</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html" class="active"><strong aria-hidden="true">4.3.</strong> Deref Polymorphism</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> Design Patterns</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> Behavioural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> Command</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> Interpreter</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> Newtype</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII Guards</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> Strategy</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> Visitor</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> Creational</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> Builder</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> Structural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> Compose Structs</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> Prefer Small Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> Contain unsafety in small modules</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html" class="active"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -146,13 +146,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="deref-polymorphism"><a class="header" href="#deref-polymorphism"><code>Deref</code> polymorphism</a></h1>
-<h2 id="description"><a class="header" href="#description">Description</a></h2>
-<p>Abuse the <code>Deref</code> trait to emulate inheritance between structs, and thus reuse
-methods.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>Sometimes we want to emulate the following common pattern from OO languages such
-as Java:</p>
+                        <h1 id="deref-多态性"><a class="header" href="#deref-多态性"><code>Deref</code> 多态性</a></h1>
+<h2 id="描述"><a class="header" href="#描述">描述</a></h2>
+<p>滥用<code>Deref</code> trait来模拟结构体间的继承，从而重用方法。</p>
+<h2 id="例子"><a class="header" href="#例子">例子</a></h2>
+<p>有时我们想模仿以下来自OO语言（如Java）的常见模式：</p>
 <pre><code class="language-java">class Foo {
     void m() { ... }
 }
@@ -164,7 +162,7 @@ public static void main(String[] args) {
     b.m();
 }
 </code></pre>
-<p>We can use the deref polymorphism anti-pattern to do so:</p>
+<p>我们可以使用deref多态性的反面模式来做到这一点：</p>
 <pre><pre class="playground"><code class="language-rust edition2018">use std::ops::Deref;
 
 struct Foo {}
@@ -191,65 +189,48 @@ fn main() {
     b.m();
 }
 </code></pre></pre>
-<p>There is no struct inheritance in Rust. Instead we use composition and include
-an instance of <code>Foo</code> in <code>Bar</code> (since the field is a value, it is stored inline,
-so if there were fields, they would have the same layout in memory as the Java
-version (probably, you should use <code>#[repr(C)]</code> if you want to be sure)).</p>
-<p>In order to make the method call work we implement <code>Deref</code> for <code>Bar</code> with <code>Foo</code>
-as the target (returning the embedded <code>Foo</code> field). That means that when we
-dereference a <code>Bar</code> (for example, using <code>*</code>) then we will get a <code>Foo</code>. That is
-pretty weird. Dereferencing usually gives a <code>T</code> from a reference to <code>T</code>, here we
-have two unrelated types. However, since the dot operator does implicit
-dereferencing, it means that the method call will search for methods on <code>Foo</code> as
-well as <code>Bar</code>.</p>
-<h2 id="advantages"><a class="header" href="#advantages">Advantages</a></h2>
-<p>You save a little boilerplate, e.g.,</p>
+<p>Rust中没有结构体的继承。相反，我们使用组合，并在<code>Bar</code>中包含一个<code>Foo</code>的实例（因为字段是一个值，它被内联存储，所以如果有字段，它们在内存中的布局与Java版本相同（可能，如果你想确定，你应该使用<code>#[repr(C)]</code>））。</p>
+<p>为了使方法调用生效，我们为<code>Bar</code>实现了<code>Deref</code>，以<code>Foo</code>为目标（返回嵌入的<code>Foo</code>字段）。这意味着当我们解除对<code>Bar</code>的引用时（例如，使用<code>*</code>），我们将得到一个<code>Foo</code>。
+这很奇怪。解引用通常从对<code>T</code>的引用中得到一个<code>T</code>，这里我们有两个不相关的类型。
+然而，由于点运算符做了隐式解引用，这意味着方法调用将搜索<code>Foo</code>和<code>Bar</code>的方法。</p>
+<h2 id="优势"><a class="header" href="#优势">优势</a></h2>
+<p>你可以节省一点模板代码，例如：</p>
 <pre><code class="language-rust ignore">impl Bar {
     fn m(&amp;self) {
         self.f.m()
     }
 }
 </code></pre>
-<h2 id="disadvantages"><a class="header" href="#disadvantages">Disadvantages</a></h2>
-<p>Most importantly this is a surprising idiom - future programmers reading this in
-code will not expect this to happen. That's because we are abusing the <code>Deref</code>
-trait rather than using it as intended (and documented, etc.). It's also because
-the mechanism here is completely implicit.</p>
-<p>This pattern does not introduce subtyping between <code>Foo</code> and <code>Bar</code> like
-inheritance in Java or C++ does. Furthermore, traits implemented by <code>Foo</code> are
-not automatically implemented for <code>Bar</code>, so this pattern interacts badly with
-bounds checking and thus generic programming.</p>
-<p>Using this pattern gives subtly different semantics from most OO languages with
-regards to <code>self</code>. Usually it remains a reference to the sub-class, with this
-pattern it will be the 'class' where the method is defined.</p>
-<p>Finally, this pattern only supports single inheritance, and has no notion of
-interfaces, class-based privacy, or other inheritance-related features. So, it
-gives an experience that will be subtly surprising to programmers used to Java
-inheritance, etc.</p>
-<h2 id="discussion"><a class="header" href="#discussion">Discussion</a></h2>
-<p>There is no one good alternative. Depending on the exact circumstances it might
-be better to re-implement using traits or to write out the facade methods to
-dispatch to <code>Foo</code> manually. We do intend to add a mechanism for inheritance
-similar to this to Rust, but it is likely to be some time before it reaches
-stable Rust. See these <a href="http://aturon.github.io/blog/2015/09/18/reuse/">blog</a>
+<h2 id="劣势"><a class="header" href="#劣势">劣势</a></h2>
+<p>最重要的是这是一个令人惊讶的习语--未来的程序员在代码中读到这句话时，不会想到会发生这种情况。
+这既因为我们在滥用<code>Deref</code> trait，而不是按照预期（文档等）使用它。
+也因为这里的机制是完全隐含的。</p>
+<p>这种模式没有像Java或C++中的继承那样在<code>Foo</code>和<code>Bar</code>之间引入子类型。此外，由<code>Foo</code>实现的特性不会自动为<code>Bar</code>实现，所以这种模式与边界检查以及泛型编程的互动性很差。</p>
+<p>使用这种模式，在<code>self</code>的语义上与大多数OO语言有细微的不同。
+通常情况下，它仍然是对子类的引用，在这种模式下，它将是定义方法的&quot;类&quot;。</p>
+<p>最后，这种模式只支持单继承，没有接口的概念，没有基于类的隐私，也没有其他与继承有关的特性。
+所以，它给人的体验会让习惯了Java继承等的程序员感到微妙的惊讶。</p>
+<h2 id="讨论"><a class="header" href="#讨论">讨论</a></h2>
+<p>我们没有一个好的替代方案。根据具体的情况，使用traits重新实现或者手动写出派发给<code>Foo</code>的facade方法可能更好。
+我们确实打算在Rust中加入与此类似的继承机制，但要达到稳定的Rust，可能还需要一些时间。详情可见：
+<a href="http://aturon.github.io/blog/2015/09/18/reuse/">blog</a>
 <a href="http://smallcultfollowing.com/babysteps/blog/2015/10/08/virtual-structs-part-4-extended-enums-and-thin-traits/">posts</a>
-and this <a href="https://github.com/rust-lang/rfcs/issues/349">RFC issue</a> for more details.</p>
-<p>The <code>Deref</code> trait is designed for the implementation of custom pointer types.
-The intention is that it will take a pointer-to-<code>T</code> to a <code>T</code>, not convert
-between different types. It is a shame that this isn't (probably cannot be)
-enforced by the trait definition.</p>
-<p>Rust tries to strike a careful balance between explicit and implicit mechanisms,
-favouring explicit conversions between types. Automatic dereferencing in the dot
-operator is a case where the ergonomics strongly favour an implicit mechanism,
-but the intention is that this is limited to degrees of indirection, not
-conversion between arbitrary types.</p>
-<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+and this <a href="https://github.com/rust-lang/rfcs/issues/349">RFC issue</a></p>
+<p><code>Deref</code> trait 是为实现自定义指针类型而设计的。
+目的是让它通过指向<code>T</code>的指针到达<code>T</code>，而不是在不同类型之间转换。
+遗憾的是，这一点并没有（也许不能）由trait定义强制执行。</p>
+<p>Rust试图在显式和隐式机制之间取得谨慎的平衡，倾向于类型之间的显式转换。
+点运算符中的自动解引用是一个人机工程学强烈支持隐式机制的情况，但其目的是将其限制在间接程度上，而不是在任意类型之间的转换。</p>
+<h2 id="参见"><a class="header" href="#参见">参见</a></h2>
 <ul>
-<li><a href="../idioms/deref.html">Collections are smart pointers idiom</a>.</li>
-<li>Delegation crates for less boilerplate like <a href="https://crates.io/crates/delegate">delegate</a>
-or <a href="https://crates.io/crates/ambassador">ambassador</a></li>
-<li><a href="https://doc.rust-lang.org/std/ops/trait.Deref.html">Documentation for <code>Deref</code> trait</a>.</li>
+<li><a href="../idioms/deref.html">集合是智能指针的习语</a>.</li>
+<li>为了较少的模板代码的代表crate <a href="https://crates.io/crates/delegate">delegate</a>
+或<a href="https://crates.io/crates/ambassador">ambassador</a></li>
+<li><a href="https://doc.rust-lang.org/std/ops/trait.Deref.html"><code>Deref</code> trait文档</a>.</li>
 </ul>
+<blockquote>
+<p>Latest commit fb57f21 on 10 Mar 2021</p>
+</blockquote>
 
                     </main>
 
