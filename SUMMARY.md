@@ -42,7 +42,7 @@
 - [反面模式](./anti_patterns/index.md)
   - [通过Clone来满足借用检查器](./anti_patterns/borrow_clone.md)
   - [`#[deny(warnings)]`](./anti_patterns/deny-warnings.md)
-  - [Deref Polymorphism](./anti_patterns/deref.md)
+  - [解引用多态性](./anti_patterns/deref.md)
 
 - [Functional Programming](./functional/index.md)
   - [Programming paradigms](./functional/paradigms.md)

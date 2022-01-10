@@ -1,11 +1,10 @@
 # `#![deny(warnings)]`
 
-## Description
+## 描述
 
-A well-intentioned crate author wants to ensure their code builds without
-warnings. So they annotate their crate root with the following:
+一个善意的crate作者想确保他们的代码在构建时不会出现警告。所以他用以下内容来注释其crate根。
 
-## Example
+## 例子
 
 ```rust
 #![deny(warnings)]
@@ -13,48 +12,37 @@ warnings. So they annotate their crate root with the following:
 // All is well.
 ```
 
-## Advantages
+## 优势
 
-It is short and will stop the build if anything is amiss.
+注释很短，如果出现错误，会停止构建。
 
-## Drawbacks
+## 劣势
 
-By disallowing the compiler to build with warnings, a crate author opts out of
-Rust's famed stability. Sometimes new features or old misfeatures need a change
-in how things are done, thus lints are written that `warn` for a certain grace
-period before being turned to `deny`.
+通过不允许编译器产生构建警告，crate作者失去了Rust引以为傲的稳定性。 
+有时，新特性或旧的错误特性需要改变处理逻辑，因此，在转为`deny`之前，会有`warn`的lint，并有一定的缓冲期。
 
-For example, it was discovered that a type could have two `impl`s with the same
-method. This was deemed a bad idea, but in order to make the transition smooth,
-the `overlapping-inherent-impls` lint was introduced to give a warning to those
-stumbling on this fact, before it becomes a hard error in a future release.
+例如，人们发现一个类型可以有两个具有相同方法的`impl`块。
+这被认为是一个坏主意，但为了使过渡顺利，`overlapping-inherent-impls` lint被引入，给那些偶然发现这个事实的人一个警告，即使它在未来的版本中将成为一个硬编码错误。
 
-Also sometimes APIs get deprecated, so their use will emit a warning where
-before there was none.
+另外，有时API会被废弃，所以在它们消失前使用会发出警告。
 
-All this conspires to potentially break the build whenever something changes.
+当某些事情发生改变，所有这些都有潜在的破坏构建的可能性。
 
-Furthermore, crates that supply additional lints (e.g. [rust-clippy]) can no
-longer be used unless the annotation is removed. This is mitigated with
-[--cap-lints]. The `--cap-lints=warn` command line argument, turns all `deny`
-lint errors into warnings.
+此外，提供额外lint的crate（例如[rust-clippy]）不能再被使用，除非注释被删除。这可以通过[-cap-lints]来缓解。
+命令行参数`--cap-lints=warn`可将所有`deny`lint错误变成警告。
 
-## Alternatives
+## 替代方案
 
-There are two ways of tackling this problem: First, we can decouple the build
-setting from the code, and second, we can name the lints we want to deny
-explicitly.
+有两种方法可以解决这个问题：第一，我们可以将构建设置与代码解耦；第二，我们可以指明我们想要显式拒绝的lint。
 
-The following command line will build with all warnings set to `deny`:
+下面的命令行参数在所有警告设置为`deny`的情况下构建：
 
 ```RUSTFLAGS="-D warnings" cargo build```
 
-This can be done by any individual developer (or be set in a CI tool like
-Travis, but remember that this may break the build when something changes)
-without requiring a change to the code.
+这可以由任何个人开发者完成（或者在Travis这样的CI工具中设置，但请记住，当有变化时，这可能会破坏构建），而不需要对代码进行修改。
 
-Alternatively, we can specify the lints that we want to `deny` in the code.
-Here is a list of warning lints that is (hopefully) safe to deny (as of Rustc 1.48.0):
+另外，我们可以在代码中指定我们想要`deny`的lint。
+下面是一个（希望）可以安全拒绝的警告lint的列表（截至Rustc 1.48.0）:
 
 ```rust,ignore
 #[deny(bad-style,
@@ -75,7 +63,7 @@ Here is a list of warning lints that is (hopefully) safe to deny (as of Rustc 1.
        while-true)]
 ```
 
-In addition, the following `allow`ed lints may be a good idea to `deny`:
+此外，以下`allow`lint可能是一个`deny`的好主意。
 
 ```rust,ignore
 #[deny(missing-debug-implementations,
@@ -88,19 +76,20 @@ In addition, the following `allow`ed lints may be a good idea to `deny`:
        unused-results)]
 ```
 
-Some may also want to add `missing-copy-implementations` to their list.
+有些人可能还想在他们的列表中加入`missing-copy-implementations`lint。
 
-Note that we explicitly did not add the `deprecated` lint, as it is fairly
-certain that there will be more deprecated APIs in the future.
+请注意，我们没有明确添加`deprecated`的lint，因为可以肯定的是，未来会有更多被废弃的API。
 
-## See also
+## 参见
 
-- [A collection of all clippy lints](https://rust-lang.github.io/rust-clippy/master)
-- [deprecate attribute] documentation
-- Type `rustc -W help` for a list of lints on your system. Also type
-`rustc --help` for a general list of options
-- [rust-clippy] is a collection of lints for better Rust code
+- [所有的clippy lints](https://rust-lang.github.io/rust-clippy/master)
+- [deprecate attribute]文档
+- 输入`rustc -W help`可查看你系统上的lint。也可以输入
+`rustc --help`查看选项。
+- [rust-clippy]是一个用于写出更好的Rust代码的lint集合。
 
 [rust-clippy]: https://github.com/Manishearth/rust-clippy
 [deprecate attribute]: https://doc.rust-lang.org/reference/attributes.html#deprecation
 [--cap-lints]: https://doc.rust-lang.org/rustc/lints/levels.html#capping-lints
+
+> Latest commit 39a2f36 on 18 Oct 2021
