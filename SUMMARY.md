@@ -24,7 +24,7 @@
   - [行为型](./patterns/behavioural/intro.md)
     - [命令](./patterns/behavioural/command.md)
     - [解释器](./patterns/behavioural/interpreter.md)
-    - [Newtype](./patterns/behavioural/newtype.md)
+    - [新类型](./patterns/behavioural/newtype.md)
     - [RAII Guards](./patterns/behavioural/RAII.md)
     - [Strategy](./patterns/behavioural/strategy.md)
     - [Visitor](./patterns/behavioural/visitor.md)

@@ -1,21 +1,17 @@
-# Newtype
+# 新类型
 
-What if in some cases we want a type to behave similar to another type or
-enforce some behaviour at compile time when using only type aliases would
-not be enough?
+如果在某些情况下，我们希望一个类型的行为类似于另一个类型，或者在编译时强制执行一些行为，而仅仅使用类型别名是不够的，怎么办？
 
-For example, if we want to create a custom `Display` implementation for `String`
-due to security considerations (e.g. passwords).
+例如，如果我们出于安全考虑（如密码），想为`String`创建一个自定义的`Display`实现。
 
-For such cases we could use the `Newtype` pattern to provide __type safety__
-and __encapsulation__.
+对于这种情况，我们可以使用`Newtype`模式来提供**类型安全**和**封装**。
 
-## Description
+## 描述
 
-Use a tuple struct with a single field to make an opaque wrapper for a type.
-This creates a new type, rather than an alias to a type (`type` items).
+使用单个字段的元组结构体为一个类型做不透明包装。
+这将创建一个新的类型，而不是一个类型的别名（`type`项）。
 
-## Example
+## 例子
 
 ```rust,ignore
 // Some type, not necessarily in the same module or even crate.
@@ -53,59 +49,48 @@ fn main() {
 }
 ```
 
-## Motivation
+## 动机
 
-The primary motivation for newtypes is abstraction. It allows you to share
-implementation details between types while precisely controlling the interface.
-By using a newtype rather than exposing the implementation type as part of an
-API, it allows you to change implementation backwards compatibly.
+新类型的主要动机是抽象化。它允许你在类型之间共享实现细节，同时精确控制接口。
+通过使用新类型而不是将实现类型作为API的一部分公开，它允许你向后兼容地改变实现。
 
-Newtypes can be used for distinguishing units, e.g., wrapping `f64` to give
-distinguishable `Miles` and `Kms`.
+新类型可以用来区分单位，例如，包装`f64`以获得可区分的`Miles`和`Kms`。
 
-## Advantages
+## 优势
 
-The wrapped and wrapper types are not type compatible (as opposed to using
-`type`), so users of the newtype will never 'confuse' the wrapped and wrapper
-types.
+被包装的类型和包装后的类型不是类型兼容的（相对于使用`type`），所以新类型的用户永远不会“混淆“包装前后的类型。
 
-Newtypes are a zero-cost abstraction - there is no runtime overhead.
+新类型是一个零成本的抽象——没有运行时的开销。
 
-The privacy system ensures that users cannot access the wrapped type (if the
-field is private, which it is by default).
+隐私系统确保用户无法访问被包装的类型（如果字段是私有的，默认情况下是私有的）。
 
-## Disadvantages
+## 劣势
 
-The downside of newtypes (especially compared with type aliases), is that there
-is no special language support. This means there can be *a lot* of boilerplate.
-You need a 'pass through' method for every method you want to expose on the
-wrapped type, and an impl for every trait you want to also be implemented for
-the wrapper type.
+新类型的缺点（尤其是与类型别名相比）是没有特殊的语言支持。这意味着可能会有*许多*模板代码。
+你需要为你想在包装类型上公开的每个方法提供一个”通过“方法，并为你想在包装类型上实现的每个trait提供一个实现。
 
-## Discussion
+## 讨论
 
-Newtypes are very common in Rust code. Abstraction or representing units are the
-most common uses, but they can be used for other reasons:
+新类型在Rust代码中非常常见。抽象或代表单位是最常见的用途，但它们也可以用于其他原因：
 
-- restricting functionality (reduce the functions exposed or traits implemented),
-- making a type with copy semantics have move semantics,
-- abstraction by providing a more concrete type and thus hiding internal types,
-  e.g.,
+- 限制功能（减少暴露的函数或实现的trait），
+- 使一个具有复制语义的类型具有移动语义，
+- 通过提供一个更具体的类型，从而隐藏内部类型来实现抽象，
+  例如，
 
 ```rust,ignore
 pub struct Foo(Bar<T1, T2>);
 ```
 
-Here, `Bar` might be some public, generic type and `T1` and `T2` are some internal
-types. Users of our module shouldn't know that we implement `Foo` by using a `Bar`,
-but what we're really hiding here is the types `T1` and `T2`, and how they are used
-with `Bar`.
+这里，`Bar`可能是一些公共的、通用的类型，`T1`和`T2`是一些内部类型。
+我们模块的用户不应该知道我们通过使用`Bar`来实现`Foo`，但我们在这里真正隐藏的是`T1`和`T2`类型，以及它们如何与`Bar`一起使用。
 
-## See also
+## 参见
 
-- [Advanced Types in the book](https://doc.rust-lang.org/book/ch19-04-advanced-types.html?highlight=newtype#using-the-newtype-pattern-for-type-safety-and-abstraction)
-- [Newtypes in Haskell](https://wiki.haskell.org/Newtype)
-- [Type aliases](https://doc.rust-lang.org/stable/book/ch19-04-advanced-types.html#creating-type-synonyms-with-type-aliases)
-- [derive_more](https://crates.io/crates/derive_more), a crate for deriving many
-  builtin traits on newtypes.
-- [The Newtype Pattern In Rust](https://www.worthe-it.co.za/blog/2020-10-31-newtype-pattern-in-rust.html)
+- [“圣经“中的高级类型](https://doc.rust-lang.org/book/ch19-04-advanced-types.html?highlight=newtype#using-the-newtype-pattern-for-type-safety-and-abstraction)
+- [Haskell中的新类型](https://wiki.haskell.org/Newtype)
+- [类型别名](https://doc.rust-lang.org/stable/book/ch19-04-advanced-types.html#creating-type-synonyms-with-type-aliases)
+- [derive_more](https://crates.io/crates/derive_more)是一个用于在新类型上派生许多内置trait的crate。
+- [Rust中的新类型模式](https://www.worthe-it.co.za/blog/2020-10-31-newtype-pattern-in-rust.html)
+
+> Latest commit 11a0a13 Dec 14 2021
