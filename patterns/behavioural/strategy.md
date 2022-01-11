@@ -1,35 +1,26 @@
-# Strategy (aka Policy)
+# 策略（也称 政策）
 
-## Description
+## 描述
 
-The [Strategy design pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
-is a technique that enables separation of concerns.
-It also allows to decouple software modules through [Dependency Inversion](https://en.wikipedia.org/wiki/Dependency_inversion_principle).
+[策略设计模式](https://en.wikipedia.org/wiki/Strategy_pattern)是一种实现关注点分离的技术。它还允许通过[依赖反转](https://en.wikipedia.org/wiki/Dependency_inversion_principle)来解耦软件模块。
 
-The basic idea behind the Strategy pattern is that, given an algorithm solving
-a particular problem, we define only the skeleton of the algorithm at an abstract
-level, and we separate the specific algorithm’s implementation into different parts.
+策略模式的基本思想是，给定一个解决特定问题的算法，我们只在抽象层面上定义算法的骨架，并将具体的算法实现分成不同的部分。
 
-In this way, a client using the algorithm may choose a specific implementation,
-while the general algorithm workflow remains the same. In other words, the abstract
-specification of the class does not depend on the specific implementation of the
-derived class, but specific implementation must adhere to the abstract specification.
-This is why we call it "Dependency Inversion".
+这样，使用该算法的客户可以选择一个具体的实现，而一般的算法工作流程保持不变。
+换句话说，类的抽象规范并不取决于派生类的具体实现，但具体实现必须遵守抽象规范。
+这就是为什么我们称之为“依赖反转”。
 
-## Motivation
+## 动机
 
-Imagine we are working on a project that generates reports every month.
-We need the reports to be generated in different formats (strategies), e.g.,
-in `JSON` or `Plain Text` formats.
-But things vary over time, and we don't know what kind of requirement we may get
-in the future. For example, we may need to generate our report in a completly new
-format, or just modify one of the existing formats.
+想象一下，我们正在做一个每月都会生成报告的项目。
+我们需要以不同的格式（策略）生成报告，例如，以`JSON`或`Plain Text`格式。
+但事情随着时间的推移而变化，我们不知道未来可能得到什么样的要求。
+例如，我们可能需要以一种全新的格式生成我们的报告，或者只是修改现有的一种格式。
 
-## Example
+## 例子
 
-In this example our invariants (or abstractions) are `Context`, `Formatter`,
-and `Report`, while `Text` and `Json` are our strategy structs. These strategies
-have to implement the `Formatter` trait.
+在这个例子中，我们的不变量（或抽象）是`Context`、`Formatter`和`Report`，而`Text`和`Json`是我们的策略结构体。
+这些策略必须实现`Formatter`的trait。
 
 ```rust
 use std::collections::HashMap;
@@ -91,41 +82,35 @@ fn main() {
 }
 ```
 
-## Advantages
+## 优势
 
-The main advantage is separation of concerns. For example, in this case `Report`
-does not know anything about specific implementations of `Json` and `Text`,
-whereas the output implementations does not care about how data is preprocessed,
-stored, and fetched. The only thing they have to know is context and a specific
-trait and method to implement, i.e,`Formatter` and `run`.
+主要优势是关注点分离。
+例如，在这种情况下，`Report`对`Json`和`Text`的具体实现一无所知，而输出实现则不关心数据如何被预处理、存储和获取。
+他们唯一需要知道的是上下文和要实现的特定trait和方法，即`Formatter`和`format`。
 
-## Disadvantages
+## 劣势
 
-For each strategy there must be implemented at least one module, so number of modules
-increases with number of strategies. If there are many strategies to choose from
-then users have to know how strategies differ from one another.
+每个策略必须至少有一个模块，所以模块的数量随着策略的数量而增加。
+如果有许多策略可供选择，那么用户就必须知道策略之间有什么不同。
 
-## Discussion
+## 讨论
 
-In the previous example all strategies are implemented in a single file.
-Ways of providing different strategies includes:
+在前面的例子中，所有策略都在一个文件中实现。
+提供不同策略的方法包括：
 
-- All in one file (as shown in this example, similar to being separated as modules)
-- Separated as modules, E.g. `formatter::json` module, `formatter::text` module
-- Use compiler feature flags, E.g. `json` feature, `text` feature
-- Separated as crates, E.g. `json` crate, `text` crate
+- 都在一个文件中（如本例所示，类似于作为模块分离的情况）
+- 作为模块分开，例如，`formatter::json`模块，`formatter::text`模块
+- 使用编译器特性标记，例如`json`特征，`text`特征
+- 作为crate分开，例如：`json`crate，`text`crate
 
-Serde crate is a good example of the `Strategy` pattern in action. Serde allows
-[full customization](https://serde.rs/custom-serialization.html) of the serialization
-behavior by manually implementing `Serialize` and `Deserialize` traits for our
-type. For example, we could easily swap `serde_json` with `serde_cbor` since they
-expose similar methods. Having this makes the helper crate `serde_transcode` much
-more useful and ergonomic.
+Serde crate是`策略`模式在实践中的一个好例子。
+Serde允许通过为我们的类型手动实现`Serialize`和`Deserialize`trait来对序列化行为进行[完全定制](https://serde.rs/custom-serialization.html)。
+例如，我们可以很容易地将`serde_json`与`serde_cbor`交换，因为它们暴露了类似的方法。
+有了这一点，使得助手crate`serde_transcode`更加有用和符合人体工程学。
 
-However, we don't need to use traits in order to design this pattern in Rust.
+然而，我们不需要使用traits就可以在Rust中设计这种模式。
 
-The following toy example demonstrates the idea of the Strategy pattern using Rust
-`closures`:
+下面的玩具例子演示了使用Rust`closures`策略模式的想法：
 
 ```rust
 struct Adder;
@@ -156,7 +141,7 @@ fn main() {
 
 ```
 
-In fact, Rust already uses this idea for `Options`'s `map` method:
+事实上，Rust已经在`Options`的`map`方法中使用了这个想法：
 
 ```rust
 fn main() {
@@ -170,8 +155,10 @@ fn main() {
 }
 ```
 
-## See also
+## 参见
 
-- [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
-- [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection)
-- [Policy Based Design](https://en.wikipedia.org/wiki/Modern_C++_Design#Policy-based_design)
+- [策略模式](https://en.wikipedia.org/wiki/Strategy_pattern)
+- [依赖注入](https://en.wikipedia.org/wiki/Dependency_injection)
+- [基于政策的设计](https://en.wikipedia.org/wiki/Modern_C++_Design#Policy-based_design)
+
+> Latest commit 9834f57 on 25 Aug 2021

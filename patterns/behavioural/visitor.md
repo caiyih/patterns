@@ -1,16 +1,13 @@
-# Visitor
+# 访问者
 
-## Description
+## 描述
 
-A visitor encapsulates an algorithm that operates over a heterogeneous
-collection of objects. It allows multiple different algorithms to be written
-over the same data without having to modify the data (or their primary
-behaviour).
+访问者封装了一种在对象的异质集合上操作的算法。
+它允许在同一数据上写入多种不同的算法，而不必修改数据（或其主要行为）。
 
-Furthermore, the visitor pattern allows separating the traversal of
-a collection of objects from the operations performed on each object.
+此外，访问者模式允许将对象集合的遍历与对每个对象进行的操作分开。
 
-## Example
+## 例子
 
 ```rust,ignore
 // The data we will visit
@@ -66,23 +63,20 @@ impl Visitor<i64> for Interpreter {
 }
 ```
 
-One could implement further visitors, for example a type checker, without having
-to modify the AST data.
+人们可以实现更多的访问者，例如类型检查器，而不需要修改AST数据。
 
-## Motivation
+## 动机
 
-The visitor pattern is useful anywhere that you want to apply an algorithm to
-heterogeneous data. If data is homogeneous, you can use an iterator-like pattern.
-Using a visitor object (rather than a functional approach) allows the visitor to
-be stateful and thus communicate information between nodes.
+访问者模式在任何你想将算法应用于异质数据的地方都很有用。
+如果数据是同质的，你可以使用一个类似迭代器的模式。
+使用访问者对象（而不是功能化的方法）允许访问者是有状态的，从而在节点之间交流信息。
 
-## Discussion
+## 讨论
 
-It is common for the `visit_*` methods to return void (as opposed to in the
-example). In that case it is possible to factor out the traversal code and share
-it between algorithms (and also to provide noop default methods). In Rust, the
-common way to do this is to provide `walk_*` functions for each datum. For
-example,
+`visit_*`方法通常会返回void（与例子中不同）。
+在这种情况下，有可能将遍历代码抽取出来，并在算法之间共享（也可以提供noop默认方法）。 
+在Rust中，常见的方法是为每个数据点提供`walk_*`函数。
+例如，
 
 ```rust,ignore
 pub fn walk_expr(visitor: &mut Visitor, e: &Expr) {
@@ -100,14 +94,14 @@ pub fn walk_expr(visitor: &mut Visitor, e: &Expr) {
 }
 ```
 
-In other languages (e.g., Java) it is common for data to have an `accept` method
-which performs the same duty.
+在其他语言中（例如Java），数据通常有一个`accept`方法，担任同样的职责。
 
-## See also
+## 参见
 
-The visitor pattern is a common pattern in most OO languages.
+访问者模式是大多数OO语言中的一种常见模式。
 
-[Wikipedia article](https://en.wikipedia.org/wiki/Visitor_pattern)
+[访问者模式](https://en.wikipedia.org/wiki/Visitor_pattern)
 
-The [fold](../creational/fold.md) pattern is similar to visitor but produces
-a new version of the visited data structure.
+[fold](../creational/fold.md)模式与visitor类似，但产生一个新版本的被访数据结构。
+
+> Latest commit b809265 on 22 Apr 2021

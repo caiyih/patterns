@@ -1,17 +1,14 @@
-# RAII with guards
+# 有守护的RAII
 
-## Description
+## 描述
 
-[RAII][wikipedia] stands for "Resource Acquisition is Initialisation" which is a
-terrible name. The essence of the pattern is that resource initialisation is done
-in the constructor of an object and finalisation in the destructor. This pattern
-is extended in Rust by using an RAII object as a guard of some resource and relying
-on the type system to ensure that access is always mediated by the guard object.
+[RAII][wikipedia]代表"Resource Acquisition is Initialisation"，”资源获取即初始化“。
+该模式的本质是，资源初始化在对象的构造函数中完成，最终化（资源释放）在析构函数中完成。
+这种模式在Rust中得到了扩展，即使用RAII对象作为某些资源的守护对象，并依靠类型系统来确保访问总是由守护对象来调解。
 
-## Example
+## 例子
 
-Mutex guards are the classic example of this pattern from the std library (this
-is a simplified version of the real implementation):
+互斥守护是std库中这种模式的典型例子（这是真正实现的简化版本）：
 
 ```rust,ignore
 use std::ops::Deref;
@@ -69,30 +66,24 @@ fn baz(x: Mutex<Foo>) {
 }
 ```
 
-## Motivation
+## 动机
 
-Where a resource must be finalised after use, RAII can be used to do this
-finalisation. If it is an error to access that resource after finalisation, then
-this pattern can be used to prevent such errors.
+如果一个资源在使用后必须进行最终处理，RAII可以用来进行最终处理。
+如果在最终处理后访问该资源是一个错误，那么这个模式可以用来防止这种错误。
 
-## Advantages
+## 优势
 
-Prevents errors where a resource is not finalised and where a resource is used
-after finalisation.
+防止在资源没有最终处理和在最终处理后使用资源时出现错误。
 
-## Discussion
+## 讨论
 
-RAII is a useful pattern for ensuring resources are properly deallocated or
-finalised. We can make use of the borrow checker in Rust to statically prevent
-errors stemming from using resources after finalisation takes place.
+RAII是一种有用的模式，可以确保资源被适当地取消分配或被最终处理。
+我们可以利用Rust中的借用检查器来静态地防止在最终处理完成后使用资源所产生的错误。
 
-The core aim of the borrow checker is to ensure that references to data do not
-outlive that data. The RAII guard pattern works because the guard object
-contains a reference to the underlying resource and only exposes such
-references. Rust ensures that the guard cannot outlive the underlying resource
-and that references to the resource mediated by the guard cannot outlive the
-guard. To see how this works it is helpful to examine the signature of `deref`
-without lifetime elision:
+借用检查器的核心目的是确保对数据的引用不会超过该数据的生命周期。
+RAII守护模式之所以有效，是因为守护对象包含了对底层资源的引用，并且只暴露了这种引用。
+Rust确保守护对象不能超过底层资源的生命周期，并且守护对象所调解资源的引用不能超过守护对象的生命周期。
+为了解这一点，检查一下没有生命周期标注的`deref`的签名是有帮助的。
 
 ```rust,ignore
 fn deref<'a>(&'a self) -> &'a T {
@@ -100,22 +91,22 @@ fn deref<'a>(&'a self) -> &'a T {
 }
 ```
 
-The returned reference to the resource has the same lifetime as `self` (`'a`).
-The borrow checker therefore ensures that the lifetime of the reference to `T`
-is shorter than the lifetime of `self`.
+返回的资源引用与`self`具有相同的生命周期(`'a`)。
+因此，借用检查器确保对`T`的引用的生命周期短于（不超过）`self`的生命周期。
 
-Note that implementing `Deref` is not a core part of this pattern, it only makes
-using the guard object more ergonomic. Implementing a `get` method on the guard
-works just as well.
+请注意，实现`Deref`并不是这个模式的核心部分，它只是让使用守护对象更符合人体工程学。
+在守护对象上实现一个`get`方法也同样有效。
 
-## See also
+## 参见
 
-[Finalisation in destructors idiom](../../idioms/dtor-finally.md)
+[习语：在析构函数中的最终处理](../../idioms/dtor-finally.md)
 
-RAII is a common pattern in C++: [cppreference.com](http://en.cppreference.com/w/cpp/language/raii),
+RAII是C++中的一种常见模式：[cppreference.com](http://en.cppreference.com/w/cpp/language/raii),
 [wikipedia][wikipedia].
 
 [wikipedia]: https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
 
-[Style guide entry](https://doc.rust-lang.org/1.0.0/style/ownership/raii.html)
-(currently just a placeholder).
+[风格指南条目](https://doc.rust-lang.org/1.0.0/style/ownership/raii.html)
+（目前仅是占位符）。
+
+> Latest commit b809265 on 22 Apr 2021
