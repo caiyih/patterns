@@ -1,15 +1,14 @@
 # Fold
 
-## Description
+## 描述
 
-Run an algorithm over each item in a collection of data to create a new item,
-thus creating a whole new collection.
+在数据集的每一项上运行一个算法，以创建一个新的项，从而创建一个全新的集合。
 
-The etymology here is unclear to me. The terms 'fold' and 'folder' are used
-in the Rust compiler, although it appears to me to be more like a map than a
-fold in the usual sense. See the discussion below for more details.
+我不清楚这里的词源。
+Rust编译器中使用了`fold`和`folder`这两个术语，尽管在我看来，它更像`map`，而不是通常意义上的`fold`。 
+更多细节见下面的讨论。
 
-## Example
+## 例子
 
 ```rust,ignore
 // The data we will fold, a simple AST.
@@ -62,61 +61,46 @@ impl Folder for Renamer {
 }
 ```
 
-The result of running the `Renamer` on an AST is a new AST identical to the old
-one, but with every name changed to `foo`. A real life folder might have some
-state preserved between nodes in the struct itself.
+在AST上运行`Renamer`的结果是一个与旧AST相同的新AST，但每个名字都改为`foo`。
+现实生活中的`folder`可能会在结构本身的节点之间保留一些状态。
 
-A folder can also be defined to map one data structure to a different (but
-usually similar) data structure. For example, we could fold an AST into a HIR
-tree (HIR stands for high-level intermediate representation).
+也可以定义一个`folder`，将一个数据结构映射到一个不同的（但通常是类似的）数据结构。
+例如，我们可以将AST`fold`成HIR树（HIR代表high-level intermediate representation，高级中间表示法）。
 
-## Motivation
+## 动机
 
-It is common to want to map a data structure by performing some operation on
-each node in the structure. For simple operations on simple data structures,
-this can be done using `Iterator::map`. For more complex operations, perhaps
-where earlier nodes can affect the operation on later nodes, or where iteration
-over the data structure is non-trivial, using the fold pattern is more
-appropriate.
+通过对结构中的每个节点进行一些操作来映射一个数据结构是很常见的。 
+对于简单数据结构的简单操作，可以使用`Iterator::map`来完成。
+对于更复杂的操作，也许前面的节点会影响后面节点的操作，或者在数据结构上的迭代不是简单的，使用`fold`模式更合适。
 
-Like the visitor pattern, the fold pattern allows us to separate traversal of a
-data structure from the operations performed to each node.
+与访问者模式一样，`fold`模式允许我们将数据结构的遍历与对每个节点进行的操作分开。
 
-## Discussion
+## 讨论
 
-Mapping data structures in this fashion is common in functional languages. In OO
-languages, it would be more common to mutate the data structure in place. The
-'functional' approach is common in Rust, mostly due to the preference for
-immutability. Using fresh data structures, rather than mutating old ones, makes
-reasoning about the code easier in most circumstances.
+以这种方式映射数据结构在函数式语言中是很常见的。
+在OO语言中，更常见的是在原地改变数据结构。
+“函数式”方法在Rust中很常见，主要是由于对不可变性的偏好。
+使用新的数据结构，而不是改变旧的数据结构，在大多数情况下使代码推理更容易。
 
-The trade-off between efficiency and reusability can be tweaked by changing how
-nodes are accepted by the `fold_*` methods.
+通过改变`fold_*`方法接受节点的方式，可以对效率和可重用性之间的权衡进行调整。
 
-In the above example we operate on `Box` pointers. Since these own their data
-exclusively, the original copy of the data structure cannot be re-used. On the
-other hand if a node is not changed, reusing it is very efficient.
+在上面的例子中，我们对`Box`指针进行操作。由于这些指针排他地拥有其数据，数据结构的原始副本不能被重新使用。
+另一方面，如果一个节点没有改变，重新使用它是非常有效的。
 
-If we were to operate on borrowed references, the original data structure can be
-reused; however, a node must be cloned even if unchanged, which can be
-expensive.
+如果我们对借来的引用进行操作，原来的数据结构可以被重用；但是，一个节点即使没有变化，也必须被克隆，这可能很昂贵。
 
-Using a reference counted pointer gives the best of both worlds - we can reuse
-the original data structure, and we don't need to clone unchanged nodes. However,
-they are less ergonomic to use and mean that the data structures cannot be
-mutable.
+使用引用计数指针可以获得两全其美的效果——我们可以重用原来的数据结构，而且我们不需要克隆未改变的节点。
+然而，它们在使用上不太符合人体工程学，而且意味着数据结构不能被改变。
 
-## See also
+## 参见
 
-Iterators have a `fold` method, however this folds a data structure into a
-value, rather than into a new data structure. An iterator's `map` is more like
-this fold pattern.
+迭代器有一个`fold`方法，但是这个方法将一个数据结构`fold`成一个值，而不是`fold`成一个新的数据结构。迭代器的`map`更像是这种`fold`模式。
 
-In other languages, fold is usually used in the sense of Rust's iterators,
-rather than this pattern. Some functional languages have powerful constructs for
-performing flexible maps over data structures.
+在其他语言中，`fold`通常是在Rust迭代器的意义上使用，而不是这种模式。
+一些函数式语言拥有强大的结构，可以对数据结构进行灵活的映射。
 
-The [visitor](../behavioural/visitor.md) pattern is closely related to fold.
-They share the concept of walking a data structure performing an operation on
-each node. However, the visitor does not create a new data structure nor consume
-the old one.
+[访问者](../behavioural/visitor.md)模式与`fold`密切相关。
+它们的共同概念是在一个数据结构上遍历，对每个节点进行操作。
+然而，访问者模式并不创建一个新的数据结构，也不消耗旧的数据结构。
+
+> Latest commit 9834f57 on 25 Aug 2021

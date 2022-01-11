@@ -1,10 +1,10 @@
-# Builder
+# 生成器
 
-## Description
+## 描述
 
-Construct an object with calls to a builder helper.
+通过对生成器助手的调用构造一个对象。
 
-## Example
+## 例子
 
 ```rust
 #[derive(Debug, PartialEq)]
@@ -60,42 +60,35 @@ fn builder_test() {
 }
 ```
 
-## Motivation
+## 动机
 
-Useful when you would otherwise require many constructors or where
-construction has side effects.
+当你需要许多构造函数或构造有副作用时，这很有用。
 
-## Advantages
+## 优势
 
-Separates methods for building from other methods.
+将构建的方法与其他方法分开。
 
-Prevents proliferation of constructors
+防止构造函数的泛滥。
 
-Can be used for one-liner initialisation as well as more complex construction.
+可用于单行的初始化，也可用于更复杂的构造。
 
-## Disadvantages
+## 劣势
 
-More complex than creating a struct object directly, or a simple constructor
-function.
+比直接创建一个结构体对象，或一个简单的构造函数更复杂。
 
-## Discussion
+## 讨论
 
-This pattern is seen more frequently in Rust (and for simpler objects) than in
-many other languages because Rust lacks overloading. Since you can only have a
-single method with a given name, having multiple constructors is less nice in
-Rust than in C++, Java, or others.
+这种模式在Rust中比其他许多语言更频繁地出现（对于更简单的对象），因为Rust缺乏重载。
+因为你只能有一个给定名称的单一方法，所以在Rust中拥有多个构造函数就不如在C++、Java或其他语言中那么好。
 
-This pattern is often used where the builder object is useful in its own right,
-rather than being just a builder. For example, see
-[`std::process::Command`](https://doc.rust-lang.org/std/process/struct.Command.html)
-is a builder for [`Child`](https://doc.rust-lang.org/std/process/struct.Child.html)
-(a process). In these cases, the `T` and `TBuilder` pattern
-of naming is not used.
+这种模式通常用于生成器对象本身就很有用，而不仅仅是一个生成器。
+例如，[`std::process::Command`](https://doc.rust-lang.org/std/process/struct.Command.html)是[`Child`](https://doc.rust-lang.org/std/process/struct.Child.html)（一个进程）的生成器。
+在这些情况下，不使用`T'和`TBuilder'的命名模式。
 
-The example takes and returns the builder by value. It is often more ergonomic
-(and more efficient) to take and return the builder as a mutable reference. The
-borrow checker makes this work naturally. This approach has the advantage that
-one can write code like
+这个例子通过值传递的方式获取并返回生成器。
+通常情况下，将生成器作为一个可变引用来获取和返回，更符合人体工程学（也更高效）。
+借用检查器使这一工作自然进行。 
+这种方法的好处是，人们可以写出像这样的代码：
 
 ```rust,ignore
 let mut fb = FooBuilder::new();
@@ -104,13 +97,14 @@ fb.b();
 let f = fb.build();
 ```
 
-as well as the `FooBuilder::new().a().b().build()` style.
+以及`FooBuilder::new().a().b().build()`风格。
 
-## See also
+## 参见
 
-- [Description in the style guide](https://web.archive.org/web/20210104103100/https://doc.rust-lang.org/1.12.0/style/ownership/builders.html)
-- [derive_builder](https://crates.io/crates/derive_builder), a crate for automatically
-  implementing this pattern while avoiding the boilerplate.
-- [Constructor pattern](../../idioms/ctor.md) for when construction is simpler.
-- [Builder pattern (wikipedia)](https://en.wikipedia.org/wiki/Builder_pattern)
-- [Construction of complex values](https://web.archive.org/web/20210104103000/https://rust-lang.github.io/api-guidelines/type-safety.html#c-builder)
+- [风格指南中的描述](https://web.archive.org/web/20210104103100/https://doc.rust-lang.org/1.12.0/style/ownership/builders.html)
+- [derive_builder](https://crates.io/crates/derive_builder)，这是个自动实现这种模式的crate，同时避免了模板代码。
+- [Constructor pattern](../../idioms/ctor.md)用于构造比较简单的时候。
+- [生成器模式(wikipedia)](https://en.wikipedia.org/wiki/Builder_pattern)
+- [复杂值的构造](https://web.archive.org/web/20210104103000/https://rust-lang.github.io/api-guidelines/type-safety.html#c-builder)
+
+> Latest commit 9834f57 on 25 Aug 2021
