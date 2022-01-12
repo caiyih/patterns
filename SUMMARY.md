@@ -35,9 +35,9 @@
     - [组合结构体](./patterns/structural/compose-structs.md)
     - [倾向于较小的Crates](./patterns/structural/small-crates.md)
     - [把不安全因素放在小模块中](./patterns/structural/unsafe-mods.md)
-  - [Foreign function interface (FFI)](./patterns/ffi/intro.md)
-    - [Object-Based APIs](./patterns/ffi/export.md)
-    - [Type Consolidation into Wrappers](./patterns/ffi/wrappers.md)
+  - [外部函数接口（FFI）](./patterns/ffi/intro.md)
+    - [基于对象的API](./patterns/ffi/export.md)
+    - [类型合并](./patterns/ffi/wrappers.md)
 
 - [反面模式](./anti_patterns/index.md)
   - [通过Clone来满足借用检查器](./anti_patterns/borrow_clone.md)

@@ -1,50 +1,40 @@
-# Object-Based APIs
+# 基于对象的API
 
-## Description
+## 描述
 
-When designing APIs in Rust which are exposed to other languages, there are some
-important design principles which are contrary to normal Rust API design:
+当在Rust中设计暴露于其他语言的API时，有一些重要的设计原则与正常的Rust API设计相反：
 
-1. All Encapsulated types should be *owned* by Rust, *managed* by the user,
-  and *opaque*.
-2. All Transactional data types should be *owned* by the user, and *transparent*.
-3. All library behavior should be functions acting upon Encapsulated types.
-4. All library behavior should be encapsulated into types not based on structure,
-  but *provenance/lifetime*.
+1. 所有的封装类型都应该被Rust*拥有*，由用户*管理*，并且*不透明*。
+2. 所有的事务性数据类型都应该由用户*拥有*，并且是*透明*的。
+3. 所有的库行为应该是作用于封装类型的函数。
+4. 所有的库行为都应该被封装成类型，且不是基于结构，而是基于*出处/生命周期*。
 
-## Motivation
+## 动机
 
-Rust has built-in FFI support to other languages.
-It does this by providing a way for crate authors to provide C-compatible APIs
-through different ABIs (though that is unimportant to this practice).
+Rust有对其他语言的内置FFI支持。
+它为crate作者提供一种方法，通过不同的ABI（尽管这对这种做法并不重要）提供与C兼容的API。
 
-Well-designed Rust FFI follows C API design principles, while compromising the
-design in Rust as little as possible. There are three goals with any foreign API:
+设计良好的Rust FFI遵循了C语言API的设计原则，同时在Rust中尽可能地减少设计的妥协。任何外部API都有三个目标：
 
-1. Make it easy to use in the target language.
-2. Avoid the API dictating internal unsafety on the Rust side as much as possible.
-3. Keep the potential for memory unsafety and Rust `undefined behaviour` as small
-  as possible.
+1. 使其易于在目标语言中使用。
+2. 尽可能避免API在Rust侧控制内部不安全性。
+3. 尽可能地减少内存不安全性和Rust`undefined behaviour`的可能性。
 
-Rust code must trust the memory safety of the foreign language beyond a certain
-point. However, every bit of `unsafe` code on the Rust side is an opportunity for
-bugs, or to exacerbate `undefined behaviour`.
+Rust代码必须在一定程度上相信外部语言的内存安全性。
+然而，Rust侧每一点`unsafe`的代码都是产生错误的机会，或者加剧了`undefined behaviour`。
 
-For example, if a pointer provenance is wrong, that may be a segfault due to
-invalid memory access. But if it is manipulated by unsafe code, it could become
-full-blown heap corruption.
+例如，如果一个指针的出处是错误的，这可能是由于无效的内存访问造成的段错误。
+同时，如果它被不安全的代码所操纵，它就可能成为全面的堆损坏。
 
-The Object-Based API design allows for writing shims that have good memory safety
-characteristics, and a clean boundary of what is safe and what is `unsafe`.
+基于对象的API设计允许编写具有良好内存安全特性的垫片代码，拥有明确的安全界限。
 
-## Code Example
+## 代码示例
 
-The POSIX standard defines the API to access an on-file database, known as [DBM](https://web.archive.org/web/20210105035602/https://www.mankier.com/0p/ndbm.h).
-It is an excellent example of an "object-based" API.
+POSIX标准定义了访问文件式数据库的API，被称为[DBM](https://web.archive.org/web/20210105035602/https://www.mankier.com/0p/ndbm.h)。
+它是一个“基于对象”的API的优秀例子。
 
-Here is the definition in C, which hopefully should be easy to read for those
-involved in FFI. The commentary below should help explain it for those who
-miss the subtleties.
+下面是C语言的定义，对参与FFI的人来说应该很容易读懂。
+下面的评论应该有助于解释细微差别。
 
 ```C
 struct DBM;
@@ -61,72 +51,57 @@ DBM    *dbm_open(const char *, int, mode_t);
 int     dbm_store(DBM *, datum, datum, int);
 ```
 
-This API defines two types: `DBM` and `datum`.
+这个API定义了两种类型：`DBM`和`datum`。
 
-The `DBM` type was called an "encapsulated" type above.
-It is designed to contain internal state, and acts as an entry point for the
-library's behavior.
+`DBM`类型即上文所称的“封装类型”。
+它被设计为包含内部状态，并作为库行为的入口。
 
-It is completely opaque to the user, who cannot create a `DBM` themselves since
-they don't know its size or layout. Instead, they must call `dbm_open`, and that
-only gives them *a pointer to one*.
+它对用户是完全不透明的，用户不能自己创建一个`DBM`，因为他们不知道它的大小和布局。
+相反，他们必须调用`dbm_open`，而这只能给他们一个*指向`DBM`的指针*。
 
-This means all `DBM`s are "owned" by the library in a Rust sense.
-The internal state of unknown size is kept in memory controlled by the library,
-not the user. The user can only manage its life cycle with `open` and `close`,
-and perform operations on it with the other functions.
+这意味着所有的`DBM`在Rust意义上是由库“拥有”的。
+未知大小的内部状态被保存在由库控制的内存中，而不是用户。
+用户只能通过`open`和`close`来管理它的生命周期，并通过其他函数对它进行操作。
 
-The `datum` type was called a "transactional" type above.
-It is designed to facilitate the exchange of information between the library and
-its user.
+`datum`类型即上文所称的“事务性数据类型”。
+它被设计用来促进库和用户之间的信息交流。
 
-The database is designed to store "unstructured data", with no pre-defined length
-or meaning. As a result, the `datum` is the C equivalent of a Rust slice: a bunch
-of bytes, and a count of how many there are. The main difference is that there is
-no type information, which is what `void` indicates.
+该数据库被设计用来存储“非结构化数据”，没有预先定义的长度或意义。
+因此，`datum`相当于C语言中的Rust slice：一串字节，以及有多少个字节的计数。主要的区别是没有类型信息，也就是`void`所表示的。
 
-Keep in mind that this header is written from the library's point of view.
-The user likely has some type they are using, which has a known size.
-But the library does not care, and by the rules of C casting, any type behind a
-pointer can be cast to `void`.
+请记住，这个头文件是从库的角度来写的。
+用户可能有一些他们正在使用的类型，这些类型有已知的大小。
+但是库并不关心，根据C语言的转换规则，指针后面的任何类型都可以被转换为`void`。
 
-As noted earlier, this type is *transparent* to the user. But also, this type is
-*owned* by the user.
-This has subtle ramifications, due to that pointer inside it.
-The question is, who owns the memory that pointer points to?
+如前所述，这种类型对用户来说是*透明*的，同时这个类型也是由用户*拥有*的。
+由于其内部指针，这有微妙的影响。
+问题是，谁拥有这个指针所指向的内存？
 
-The answer for best memory safety is, "the user".
-But in cases such as retrieving a value, the user does not know how to allocate
-it correctly (since they don't know how long the value is). In this case, the library
-code is expected to use the heap that the user has access to -- such as the C library
-`malloc` and `free` -- and then *transfer ownership* in the Rust sense.
+对于最佳的内存安全性来说，答案是“用户”。
+但是在诸如检索一个值的情况下，用户不知道如何正确地分配它（因为他们不知道这个值有多长）。
+在这种情况下，库的代码应该使用用户可以访问的堆——比如C库的`malloc`和`free`——然后在Rust意义上*转移所有权*。
 
-This may all seem speculative, but this is what a pointer means in C.
-It means the same thing as Rust: "user defined lifetime."
-The user of the library needs to read the documentation in order to use it correctly.
-That said, there are some decisions that have fewer or greater consequences if users
-do it wrong. Minimizing those are what this best practice is about, and the key
-is to *transfer ownership of everything that is transparent*.
+这似乎都是猜测，但这就是C语言中指针的含义。
+它和Rust的意思是一样的：“用户定义的生命周期”。
+库的用户需要阅读文档，以便正确使用它。
+也就是说，有一些决定，如果用户做错了，会产生或大或小的后果。
+尽量减少这些是这个最佳实践的目的，关键是要*转移一切透明事务的所有权*。
 
-## Advantages
+## 优势
 
-This minimizes the number of memory safety guarantees the user must uphold to a
-relatively small number:
+这使用户必须坚持的内存安全保证的数量降到相对较少：
 
-1. Do not call any function with a pointer not returned by `dbm_open` (invalid
-  access or corruption).
-2. Do not call any function on a pointer after close (use after free).
-3. The `dptr` on any `datum` must be `NULL`, or point to a valid slice of memory
-  at the advertised length.
+1. 不要用不是由`dbm_open`返回的指针调用任何函数（无效访问或损坏）。
+2. 关闭之后，不要在指针上调用任何函数（在free后使用）。
+3. 任何`datum`上的`dptr`必须是`NULL`，或者指向一个有效的内存片，其长度为所声明的长度。
 
-In addition, it avoids a lot of pointer provenance issues.
-To understand why, let us consider an alternative in some depth: key iteration.
+此外，它还避免了很多指针出处的问题。
+为了理解原因，让我们深入考虑一个替代方案：键的迭代。
 
-Rust is well known for its iterators.
-When implementing one, the programmer makes a separate type with a bounded lifetime
-to its owner, and implements the `Iterator` trait.
+Rust的迭代器是众所周知的。
+当实现一个迭代器时，程序员会给它的所有者做一个单独的类型，有一定的生命周期，并实现`Iterator`trait。
 
-Here is how iteration would be done in Rust for `DBM`:
+下面是在Rust中对`DBM`进行迭代的方法:
 
 ```rust,ignore
 struct Dbm { ... }
@@ -144,8 +119,8 @@ struct DbmKeysIter<'it> {
 impl<'it> Iterator for DbmKeysIter<'it> { ... }
 ```
 
-This is clean, idiomatic, and safe. thanks to Rust's guarantees.
-However, consider what a straightforward API translation would look like:
+由于Rust的保证，这样做是干净的、习惯性的，而且是安全的。
+然而，考虑一下一个直接的API翻译会是什么样子:
 
 ```rust,ignore
 #[no_mangle]
@@ -165,12 +140,10 @@ pub extern "C" fn dbm_iter_del(*mut DbmKeysIter) {
 }
 ```
 
-This API loses a key piece of information: the lifetime of the iterator must not
-exceed the lifetime of the `Dbm` object that owns it. A user of the library could
-use it in a way which causes the iterator to outlive the data it is iterating on,
-resulting in reading uninitialized memory.
+这个API丢失了一个关键信息：迭代器的生命周期不能超过拥有它的`Dbm`对象的生命周期。
+库的用户可以使用它，使迭代器的生命周期超过它所迭代的数据，从而导致读取未初始化的内存。
 
-This example written in C contains a bug that will be explained afterwards:
+这个用C语言编写的例子包含一个错误，将在后面解释：
 
 ```C
 int count_key_sizes(DBM *db) {
@@ -199,62 +172,52 @@ int count_key_sizes(DBM *db) {
 }
 ```
 
-This bug is a classic. Here's what happens when the iterator returns the
-end-of-iteration marker:
+这是一个经典bug。下面是迭代器返回迭代结束标记时的情况：
 
-1. The loop condition sets `l` to zero, and enters the loop because `0 >= 0`.
-2. The length is incremented, in this case by zero.
-3. The if statement is true, so the database is closed. There should be a break
-  statement here.
-4. The loop condition executes again, causing a `next` call on the closed object.
+1. 循环条件将`l`设置为0，并进入循环，因为`0 >= 0`。
+2. 长度递增，但在此情况下为0。
+3. if语句为真，所以数据库被关闭。这里应该有一个break语句。
+4. 循环条件再次执行，引起对已关闭对象的`next`调用。
 
-The worst part about this bug?
-If the Rust implementation was careful, this code will work most of the time!
-If the memory for the `Dbm` object is not immediately reused, an internal check
-will almost certainly fail, resulting in the iterator returning a `-1` indicating
-an error. But occasionally, it will cause a segmentation fault, or even worse,
-nonsensical memory corruption!
+这个错误最糟糕的地方是什么？
+如果Rust的实现很小心的话，这段代码在大多数时候都能正常工作!
+如果`Dbm`对象的内存没有被立即重用，内部检查几乎肯定会失败，导致迭代器返回一个`-1`表示错误。 
+但偶尔也会造成段错误，甚至更糟糕的是，会造成无意义的内存损坏！
 
-None of this can be avoided by Rust.
-From its perspective, it put those objects on its heap, returned pointers to them,
-and gave up control of their lifetimes. The C code simply must "play nice".
+这些都不是Rust所能避免的。
+从它的角度来看，它把这些对象放在了它的堆上，返回了它们的指针，并放弃了对它们生命周期的控制。
+C语言的代码只是必须“玩得好”。
 
-The programmer must read and understand the API documentation.
-While some consider that par for the course in C, a good API design can mitigate
-this risk. The POSIX API for `DBM` did this by *consolidating the ownership* of
-the iterator with its parent:
+程序员必须阅读和理解API文档。
+虽然有些人认为这在C语言中是理所当然的，但一个好的API设计可以减轻这种风险。
+`DBM`的POSIX API通过将迭代器的所有权与它的父级合并来做到这一点。
 
 ```C
 datum   dbm_firstkey(DBM *);
 datum   dbm_nextkey(DBM *);
 ```
 
-Thus, all the lifetimes were bound together, and such unsafety was prevented.
+因此，所有的生命周期都被捆绑在一起，避免了不安全因素。
 
-## Disadvantages
+## 劣势
 
-However, this design choice also has a number of drawbacks, which should be
-considered as well.
+然而，这种设计选择也有一些缺点，也应予以考虑。
 
-First, the API itself becomes less expressive.
-With POSIX DBM, there is only one iterator per object, and every call changes
-its state. This is much more restrictive than iterators in almost any language,
-even though it is safe. Perhaps with other related objects, whose lifetimes are
-less hierarchical, this limitation is more of a cost than the safety.
+首先，API本身变得不那么具有表达性。
+在POSIX DBM中，每个对象只有一个迭代器，而且每次调用都会改变其状态。
+这比几乎所有语言中的迭代器都要限制得多，尽管它是安全的。
+也许对于其他相关的对象，其生命周期没有那么多层次，这种限制比安全性更有代价。
 
-Second, depending on the relationships of the API's parts, significant design effort
-may be involved. Many of the easier design points have other patterns associated
-with them:
+其次，根据API各部分的关系，可能会涉及大量的设计工作。
+许多比较容易的设计点都有其他模式与之相关：
 
-- [Wrapper Type Consolidation](./wrappers.md) groups multiple Rust types together
-  into an opaque "object"
+- [类型合并](./wrappers.md)将多个Rust类型组合成一个不透明的“对象”。
 
-- [FFI Error Passing](../../idioms/ffi/errors.md) explains error handling with integer
-  codes and sentinel return values (such as `NULL` pointers)
+- [FFI 错误传递](../../idioms/ffi/errors.md)解释了用整数值和哨兵返回值（如`NULL`指针）的错误处理。
 
-- [Accepting Foreign Strings](../../idioms/ffi/accepting-strings.md) allows accepting
-  strings with minimal unsafe code, and is easier to get right than
-  [Passing Strings to FFI](../../idioms/ffi/passing-strings.md)
+- [接受外部字符串]](../../idioms/ffi/accepting-strings.md)允许以最小的不安全代码接受字符串，并且比[向FFI传递字符串](../../idioms/ffi/passing-strings.md)更容易做对。
 
-However, not every API can be done this way.
-It is up to the best judgement of the programmer as to who their audience is.
+然而，并不是每个API都可以这样做。
+至于谁是他们的受众，则取决于程序员的最佳判断。
+
+> Latest commit 9834f57 on 25 Aug 2021
