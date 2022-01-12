@@ -1,23 +1,19 @@
-# Compose structs together for better borrowing
+# 将结构体组合在一起以获得更好的借用
 
-TODO - this is not a very snappy name
+TODO - 这不是一个简洁的名字
 
-## Description
+## 描述
 
-Sometimes a large struct will cause issues with the borrow checker - although
-fields can be borrowed independently, sometimes the whole struct ends up being
-used at once, preventing other uses. A solution might be to decompose the struct
-into several smaller structs. Then compose these together into the original
-struct. Then each struct can be borrowed separately and have more flexible
-behaviour.
+有时一个大的结构体会给借用检查器带来问题——虽然字段可以被独立借用，但有时整个结构体最终会被一次性使用，从而妨碍其他用途。
+一个解决方案可能是将该结构体分解为几个较小的结构体。
+然后将这些结构体组合为原始结构体。
+然后每个结构体都可以被单独借用，并具有更灵活的行为。
 
-This will often lead to a better design in other ways: applying this design
-pattern often reveals smaller units of functionality.
+这往往会在其他方面带来更好的设计：应用这种设计模式往往能发现更小的功能单元。
 
-## Example
+## 例子
 
-Here is a contrived example of where the borrow checker foils us in our plan to
-use a struct:
+下面是一个精心设计的例子，说明借用检查器挫败了我们使用结构体的计划：
 
 ```rust
 struct A {
@@ -39,8 +35,7 @@ fn baz(a: &mut A) {
 }
 ```
 
-We can apply this design pattern and refactor `A` into two smaller structs, thus
-solving the borrow checking issue:
+我们可以应用这种设计模式，将`A`重构为两个较小的结构体，从而解决借用检查问题：
 
 ```rust
 // A is now composed of two structs - B and C.
@@ -68,32 +63,29 @@ fn baz(a: &mut A) {
 }
 ```
 
-## Motivation
+## 动机
 
-TODO Why and where you should use the pattern
+TODO 为什么以及在哪里应该使用该模式。
 
-## Advantages
+## 优势
 
-Lets you work around limitations in the borrow checker.
+让你可以绕过借用检查器的限制。
 
-Often produces a better design.
+通常会产生一个更好的设计。
 
-## Disadvantages
+## 劣势
 
-Leads to more verbose code.
+导致更多冗长的代码。
 
-Sometimes, the smaller structs are not good abstractions, and so we end up with
-a worse design. That is probably a 'code smell', indicating that the program
-should be refactored in some way.
+有时，较小的结构体并不是很好的抽象，所以我们最终得到了一个更糟糕的设计。
+这可能是一种“代码气味”，表明该程序应该以某种方式进行重构。
 
-## Discussion
+## 讨论
 
-This pattern is not required in languages that don't have a borrow checker, so
-in that sense is unique to Rust. However, making smaller units of functionality
-often leads to cleaner code: a widely acknowledged principle of software
-engineering, independent of the language.
+这种模式在没有借用检查器的语言中是不需要的，所以从这个意义上说是Rust独有的。
+然而，将功能单元做得更小，往往能使代码更简洁：这是软件工程中公认的原则，与语言无关。
 
-This pattern relies on Rust's borrow checker to be able to borrow fields
-independently of each other. In the example, the borrow checker knows that `a.b`
-and `a.c` are distinct and can be borrowed independently, it does not try to
-borrow all of `a`, which would make this pattern useless.
+这个模式依赖于Rust的借用检查器能够独立借用字段。
+在这个例子中，借用检查器知道`a.b`和`a.c`是不同的，可以独立借用，它不会试图借用`a`的全部，这将使这个模式毫无用处。
+
+> Latest commit 606bcff on 26 Feb 2021

@@ -1,34 +1,29 @@
-# Contain unsafety in small modules
+# 把不安全因素放在小模块中
 
-## Description
+## 描述
 
-If you have `unsafe` code, create the smallest possible module that can uphold
-the needed invariants to build a minimal safe interface upon the unsafety. Embed
-this into a larger module that contains only safe code and presents an ergonomic
-interface. Note that the outer module can contain unsafe functions and methods
-that call directly into the unsafe code. Users may use this to gain speed benefits.
+如果你有`unsafe`的代码，创建一个尽可能小的模块，它可以坚持在不安全的基础上建立一个最小的安全接口所需的不变量。
+将其嵌入到一个更大的模块中，该模块只包含安全代码，并提供一个符合人体工程学的接口。
+注意，外部模块可以包含直接调用不安全代码的不安全函数和方法。用户可以用它来获得速度上的好处。
 
-## Advantages
+## 优势
 
-* This restricts the unsafe code that must be audited
-* Writing the outer module is much easier, since you can count on the guarantees
-of the inner module
+* 限制必须被审计的不安全代码。
+* 编写外部模块要容易得多，因为你可以依靠内部模块的保证。
 
-## Disadvantages
+## 劣势
 
-* Sometimes, it may be hard to find a suitable interface.
-* The abstraction may introduce inefficiencies.
+* 有时，可能很难找到一个合适的接口。
+* 抽象可能会带来效率低下的问题。
 
-## Examples
+## 例子
 
-* The [`toolshed`](https://docs.rs/toolshed) crate contains its unsafe operations
-  in submodules, presenting a safe interface to users.
-* `std`'s `String` class is a wrapper over `Vec<u8>` with the added invariant
-that the contents must be valid UTF-8. The operations on `String` ensure this
-behavior.
-However, users have the option of using an `unsafe` method to create a `String`,
-in which case the onus is on them to guarantee the validity of the contents.
+* [`toolshed`](https://docs.rs/toolshed)crate在子模块中包含其不安全的操作，为用户提供了一个安全的接口。
+* `std`的`String`类是对`Vec<u8>`的封装，增加了内容必须是有效UTF-8的不变量。对`String`的操作确保了这种行为。
+然而，用户可以选择使用一个`unsafe`的方法来创建一个`String`，在这种情况下，他们有责任保证内容的有效性。
 
-## See also
+## 参见
 
-* [Ralf Jung's Blog about invariants in unsafe code](https://www.ralfj.de/blog/2018/08/22/two-kinds-of-invariants.html)
+* [Ralf Jung的博客，关于不安全代码中的不变量](https://www.ralfj.de/blog/2018/08/22/two-kinds-of-invariants.html)
+
+> Latest commit 044d365 on 25 Nov 2021
