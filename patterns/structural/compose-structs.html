@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Compose Structs - Rust Design Patterns</title>
+        <title>组合结构体 - Rust Design Patterns</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问者</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> Structural</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/structural/compose-structs.html" class="active"><strong aria-hidden="true">3.3.1.</strong> Compose Structs</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> Prefer Small Crates</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> Contain unsafety in small modules</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../../idioms/index.html"><strong aria-hidden="true">2.</strong> 习语</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> Concatenating Strings with format!</a></li><li class="chapter-item expanded "><a href="../../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> Constructor</a></li><li class="chapter-item expanded "><a href="../../idioms/default.html"><strong aria-hidden="true">2.4.</strong> The Default Trait</a></li><li class="chapter-item expanded "><a href="../../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> Collections Are Smart Pointers</a></li><li class="chapter-item expanded "><a href="../../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> Finalisation in Destructors</a></li><li class="chapter-item expanded "><a href="../../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> On-Stack Dynamic Dispatch</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> Idiomatic Errors</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> Accepting Strings</a></li><li class="chapter-item expanded "><a href="../../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> Passing Strings</a></li></ol></li><li class="chapter-item expanded "><a href="../../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Iterating over an Option</a></li><li class="chapter-item expanded "><a href="../../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> Pass Variables to Closure</a></li><li class="chapter-item expanded "><a href="../../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问者</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> 结构型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/structural/compose-structs.html" class="active"><strong aria-hidden="true">3.3.1.</strong> 组合结构体</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> 倾向于较小的Crates</a></li><li class="chapter-item expanded "><a href="../../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> 把不安全因素放在小模块中</a></li></ol></li><li class="chapter-item expanded "><a href="../../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> Foreign function interface (FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> Object-Based APIs</a></li><li class="chapter-item expanded "><a href="../../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> Type Consolidation into Wrappers</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -146,20 +146,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="compose-structs-together-for-better-borrowing"><a class="header" href="#compose-structs-together-for-better-borrowing">Compose structs together for better borrowing</a></h1>
-<p>TODO - this is not a very snappy name</p>
-<h2 id="description"><a class="header" href="#description">Description</a></h2>
-<p>Sometimes a large struct will cause issues with the borrow checker - although
-fields can be borrowed independently, sometimes the whole struct ends up being
-used at once, preventing other uses. A solution might be to decompose the struct
-into several smaller structs. Then compose these together into the original
-struct. Then each struct can be borrowed separately and have more flexible
-behaviour.</p>
-<p>This will often lead to a better design in other ways: applying this design
-pattern often reveals smaller units of functionality.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>Here is a contrived example of where the borrow checker foils us in our plan to
-use a struct:</p>
+                        <h1 id="将结构体组合在一起以获得更好的借用"><a class="header" href="#将结构体组合在一起以获得更好的借用">将结构体组合在一起以获得更好的借用</a></h1>
+<p>TODO - 这不是一个简洁的名字</p>
+<h2 id="描述"><a class="header" href="#描述">描述</a></h2>
+<p>有时一个大的结构体会给借用检查器带来问题——虽然字段可以被独立借用，但有时整个结构体最终会被一次性使用，从而妨碍其他用途。
+一个解决方案可能是将该结构体分解为几个较小的结构体。
+然后将这些结构体组合为原始结构体。
+然后每个结构体都可以被单独借用，并具有更灵活的行为。</p>
+<p>这往往会在其他方面带来更好的设计：应用这种设计模式往往能发现更小的功能单元。</p>
+<h2 id="例子"><a class="header" href="#例子">例子</a></h2>
+<p>下面是一个精心设计的例子，说明借用检查器挫败了我们使用结构体的计划：</p>
 <pre><pre class="playground"><code class="language-rust edition2018">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -182,8 +178,7 @@ fn baz(a: &amp;mut A) {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<p>We can apply this design pattern and refactor <code>A</code> into two smaller structs, thus
-solving the borrow checking issue:</p>
+<p>我们可以应用这种设计模式，将<code>A</code>重构为两个较小的结构体，从而解决借用检查问题：</p>
 <pre><pre class="playground"><code class="language-rust edition2018">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -212,25 +207,23 @@ fn baz(a: &amp;mut A) {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="motivation"><a class="header" href="#motivation">Motivation</a></h2>
-<p>TODO Why and where you should use the pattern</p>
-<h2 id="advantages"><a class="header" href="#advantages">Advantages</a></h2>
-<p>Lets you work around limitations in the borrow checker.</p>
-<p>Often produces a better design.</p>
-<h2 id="disadvantages"><a class="header" href="#disadvantages">Disadvantages</a></h2>
-<p>Leads to more verbose code.</p>
-<p>Sometimes, the smaller structs are not good abstractions, and so we end up with
-a worse design. That is probably a 'code smell', indicating that the program
-should be refactored in some way.</p>
-<h2 id="discussion"><a class="header" href="#discussion">Discussion</a></h2>
-<p>This pattern is not required in languages that don't have a borrow checker, so
-in that sense is unique to Rust. However, making smaller units of functionality
-often leads to cleaner code: a widely acknowledged principle of software
-engineering, independent of the language.</p>
-<p>This pattern relies on Rust's borrow checker to be able to borrow fields
-independently of each other. In the example, the borrow checker knows that <code>a.b</code>
-and <code>a.c</code> are distinct and can be borrowed independently, it does not try to
-borrow all of <code>a</code>, which would make this pattern useless.</p>
+<h2 id="动机"><a class="header" href="#动机">动机</a></h2>
+<p>TODO 为什么以及在哪里应该使用该模式。</p>
+<h2 id="优势"><a class="header" href="#优势">优势</a></h2>
+<p>让你可以绕过借用检查器的限制。</p>
+<p>通常会产生一个更好的设计。</p>
+<h2 id="劣势"><a class="header" href="#劣势">劣势</a></h2>
+<p>导致更多冗长的代码。</p>
+<p>有时，较小的结构体并不是很好的抽象，所以我们最终得到了一个更糟糕的设计。
+这可能是一种“代码气味”，表明该程序应该以某种方式进行重构。</p>
+<h2 id="讨论"><a class="header" href="#讨论">讨论</a></h2>
+<p>这种模式在没有借用检查器的语言中是不需要的，所以从这个意义上说是Rust独有的。
+然而，将功能单元做得更小，往往能使代码更简洁：这是软件工程中公认的原则，与语言无关。</p>
+<p>这个模式依赖于Rust的借用检查器能够独立借用字段。
+在这个例子中，借用检查器知道<code>a.b</code>和<code>a.c</code>是不同的，可以独立借用，它不会试图借用<code>a</code>的全部，这将使这个模式毫无用处。</p>
+<blockquote>
+<p>Latest commit 606bcff on 26 Feb 2021</p>
+</blockquote>
 
                     </main>
 
