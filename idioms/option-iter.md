@@ -1,15 +1,13 @@
-# Iterating over an `Option`
+# `Option`的迭代
 
-## Description
+## 描述
 
-`Option` can be viewed as a container that contains either zero or one
-element. In particular, it implements the `IntoIterator` trait, and as such
-can be used with generic code that needs such a type.
+`Option`可以被看作是一个包含零或一个元素的容器。
+特别是，它实现了`IntoIterator`trait，因此可以用于需要这种类型的通用代码。
 
-## Examples
+## 例子
 
-Since `Option` implements `IntoIterator`, it can be used as an argument to
-[`.extend()`](https://doc.rust-lang.org/std/iter/trait.Extend.html#tymethod.extend):
+由于`Option`实现了`IntoIterator`，它可以作为[`.extend()`](https://doc.rust-lang.org/std/iter/trait.Extend.html#tymethod.extend)的一个参数：
 
 ```rust
 let turing = Some("Turing");
@@ -23,8 +21,7 @@ if let Some(turing_inner) = turing {
 }
 ```
 
-If you need to tack an `Option` to the end of an existing iterator, you can
-pass it to [`.chain()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.chain):
+如果你需要把一个`Option`粘到现有迭代器的末尾，你可以把它传递给[`.chain()`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.chain):
 
 ```rust
 let turing = Some("Turing");
@@ -35,25 +32,20 @@ for logician in logicians.iter().chain(turing.iter()) {
 }
 ```
 
-Note that if the `Option` is always `Some`, then it is more idiomatic to use
-[`std::iter::once`](https://doc.rust-lang.org/std/iter/fn.once.html) on the
-element instead.
+注意，如果`Option`总是`Some`，那么在元素上使用[`std::iter::once`](https://doc.rust-lang.org/std/iter/fn.once.html)更常见。
 
-Also, since `Option` implements `IntoIterator`, it's possible to iterate over
-it using a `for` loop. This is equivalent to matching it with `if let Some(..)`,
-and in most cases you should prefer the latter.
+另外，由于`Option`实现了`IntoIterator`，所以可以使用`for`循环对其进行迭代。
+这相当于用`if let Some(..)`来匹配它，在大多数情况下，你应该选择后者。
 
-## See also
+## 参见
 
-* [`std::iter::once`](https://doc.rust-lang.org/std/iter/fn.once.html) is an
-iterator which yields exactly one element. It's a more readable alternative to
-`Some(foo).into_iter()`.
+* [`std::iter::once`](https://doc.rust-lang.org/std/iter/fn.once.html)是一个迭代器，正好产生一个元素。
+它是`Some(foo).into_iter()`的一个更易读的替代品。
 
-* [`Iterator::filter_map`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter_map)
-  is a version of [`Iterator::flat_map`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flat_map),
-  specialized to mapping functions which return `Option`.
+* [`Iterator::filter_map`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter_map)是[`Iterator::flat_map`](https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.flat_map)的一个版本，专门用于返回`Option`的映射函数。
 
-* The [`ref_slice`](https://crates.io/crates/ref_slice) crate provides functions
-  for converting an `Option` to a zero- or one-element slice.
+* [`ref_slice`](https://crates.io/crates/ref_slice)crate提供了将`Option`转换为零或单个元素切片的函数。
 
-* [Documentation for `Option<T>`](https://doc.rust-lang.org/std/option/enum.Option.html)
+* [`Option<T>`文档](https://doc.rust-lang.org/std/option/enum.Option.html)
+
+> Latest commit 9834f57 on 25 Aug 2021

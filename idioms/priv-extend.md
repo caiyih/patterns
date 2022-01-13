@@ -1,6 +1,6 @@
 # `#[non_exhaustive]` and private fields for extensibility
 
-## Description
+## 描述
 
 A small set of scenarios exist where a library author may want to add public
 fields to a public struct or new variants to an enum without breaking backwards
@@ -15,7 +15,7 @@ Rust offers two solutions to this problem:
 - You may add a private field to a struct to prevent it from being directly
   instantiated or matched against (see Alternative)
 
-## Example
+## 例子
 
 ```rust
 mod a {
@@ -120,3 +120,5 @@ there is rarely a sensible action to take in this scenario.
 ## See also
 
 - [RFC introducing #[non_exhaustive] attribute for enums and structs](https://github.com/rust-lang/rfcs/blob/master/text/2008-non-exhaustive.md)
+
+> Latest commit 567a1f1 on 1 Sep 2021

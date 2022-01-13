@@ -1,17 +1,15 @@
-# Pass variables to closure
+# 传递变量到闭包
 
-## Description
+## 描述
 
-By default, closures capture their environment by borrowing. Or you can use
-`move`-closure to move whole environment. However, often you want to move just
-some variables to closure, give it copy of some data, pass it by reference, or
-perform some other transformation.
+默认情况下，闭包通过借用来捕获其环境。或者你可以使用 `move`-closure 来移动整个环境。
+然而，你往往只想把一些变量转移到闭包中，给它一些数据的拷贝，通过引用传递，或者执行一些其他的转换。
 
-Use variable rebinding in separate scope for that.
+为此，在单独的作用域中使用变量重绑定。
 
-## Example
+## 例子
 
-Use
+使用
 
 ```rust
 use std::rc::Rc;
@@ -29,7 +27,7 @@ let closure = {
 };
 ```
 
-instead of
+而不是
 
 ```rust
 use std::rc::Rc;
@@ -45,15 +43,14 @@ let closure = move || {
 };
 ```
 
-## Advantages
+## 优势
 
-Copied data are grouped together with closure definition, so their purpose is
-more clear, and they will be dropped immediately even if they are not consumed
-by closure.
+复制的数据和闭包定义在一起，所以它们的目的更明确，而且即使它们没有被闭包消耗，也会被立即丢弃。
 
-Closure uses same variable names as surrounding code whether data are copied or
-moved.
+无论数据是被复制还是被移动，闭包都使用与周围代码相同的变量名。
 
-## Disadvantages
+## 劣势
 
-Additional indentation of closure body.
+闭包体的额外缩进。
+
+> Latest commit 9834f57 on 25 Aug 2021
