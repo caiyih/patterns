@@ -1,9 +1,9 @@
-# Constructors
+# 构造器
 
-## Description
+## 描述
 
-Rust does not have constructors as a language construct. Instead, the
-convention is to use an [associated function][] `new` to create an object:
+Rust没有构造器作为语言构造。
+相反，惯例是使用一个[关联函数][]`new`来创建一个对象：
 
 ```rust
 /// Time in seconds.
@@ -32,9 +32,9 @@ impl Second {
 }
 ```
 
-## Default Constructors
+## 默认构造器
 
-Rust supports default constructors with the [`Default`][std-default] trait:
+Rust通过[`Default`][std-default]trait支持默认构造器：
 
 ```rust
 /// Time in seconds.
@@ -63,8 +63,7 @@ impl Default for Second {
 }
 ```
 
-`Default` can also be derived if all types of all fields implement `Default`,
-like they do with `Second`:
+如果所有类型的所有字段都实现了`Default`，也可以派生出`Default`，就像对`Second`那样：
 
 ```rust
 /// Time in seconds.
@@ -88,21 +87,18 @@ impl Second {
 }
 ```
 
-**Note:** When implementing `Default` for a type, it is neither required nor
-recommended to also provide an associated function `new` without arguments.
+**注意：**当为一个类型实现`Default`时，既不需要也不建议同时提供一个没有参数的相关函数`new`。
 
-**Hint:** The advantage of implementing or deriving `Default` is that your type
-can now be used where a `Default` implementation is required, most prominently,
-any of the [`*or_default` functions in the standard library][std-or-default].
+**提示：**实现或派生`Default`的好处是，你的类型现在可以用于需要实现`Default`的地方，最突出的是标准库中的任何[`*or_default`函数][std-or-default]。
 
-## See also
+## 参见
 
-- The [default idiom](default.md) for a more in-depth description of the
-  `Default` trait.
+- [default 习语](default.md)对`Default`trait更深入的描述。
 
-- The [builder pattern](../patterns/creational/builder.md) for constructing
-  objects where there are multiple configurations.
+- [生成器模式](../patterns/creational/builder.md)用于构建有多种配置的对象。
 
-[associated function]: https://doc.rust-lang.org/stable/book/ch05-03-method-syntax.html#associated-functions
+[关联函数]: https://doc.rust-lang.org/stable/book/ch05-03-method-syntax.html#associated-functions
 [std-default]: https://doc.rust-lang.org/stable/std/default/trait.Default.html
 [std-or-default]: https://doc.rust-lang.org/stable/std/?search=or_default
+
+> Latest commit fa8e722 on 22 Nov 2021

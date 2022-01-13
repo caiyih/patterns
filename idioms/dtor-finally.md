@@ -1,12 +1,11 @@
-# Finalisation in destructors
+# 析构器中的最终处理
 
 ## Description
 
-Rust does not provide the equivalent to `finally` blocks - code that will be
-executed no matter how a function is exited. Instead, an object's destructor can
-be used to run code that must be run before exit.
+Rust没有提供与`finally`块相当的设施——无论函数如何退出都会被执行。
+相反，一个对象的析构器可以被用来运行必须在退出前运行的代码。
 
-## Example
+## 例子
 
 ```rust,ignore
 fn bar() -> Result<(), ()> {
@@ -29,62 +28,54 @@ fn bar() -> Result<(), ()> {
 }
 ```
 
-## Motivation
+## 动机
 
-If a function has multiple return points, then executing code on exit becomes
-difficult and repetitive (and thus bug-prone). This is especially the case where
-return is implicit due to a macro. A common case is the `?` operator which
-returns if the result is an `Err`, but continues if it is `Ok`. `?` is used as
-an exception handling mechanism, but unlike Java (which has `finally`), there is
-no way to schedule code to run in both the normal and exceptional cases.
-Panicking will also exit a function early.
+如果一个函数有多个返回点，那么在退出时执行代码就会变得困难和重复（从而容易产生错误）。
+特别是在由于宏而隐式返回的情况下。
+一个常见的情况是`?`操作符，如果结果是`Err`就返回，如果是`Ok`就继续。
+ `?`被用作异常处理机制，但不像Java（有`finally`），没有办法安排代码在正常和异常情况下运行。
+发生Panic也会提前退出函数。
 
-## Advantages
+## 优势
 
-Code in destructors will (nearly) be always run - copes with panics, early
-returns, etc.
+析构器中的代码将（几乎）一直运行——应对panic、提前返回等问题。
 
-## Disadvantages
+## 劣势
 
-It is not guaranteed that destructors will run. For example, if there is an
-infinite loop in a function or if running a function crashes before exit.
-Destructors are also not run in the case of a panic in an already panicking
-thread. Therefore, destructors cannot be relied on as finalizers where it is
-absolutely essential that finalisation happens.
+事实上，并没有保证析构器一定会运行。
+例如，如果在一个函数中存在一个无限循环，或者如果运行函数在退出前崩溃。
+在已经发生panic的线程中，析构器也不会被运行。
+因此，在绝对有必要进行最终处理的情况下，不能依靠析构器作为最终处理器。
 
-This pattern introduces some hard to notice, implicit code. Reading a function
-gives no clear indication of destructors to be run on exit. This can make
-debugging tricky.
 
-Requiring an object and `Drop` impl just for finalisation is heavy on boilerplate.
+这种模式引入了一些难以察觉的隐式代码。阅读一个函数时，没有明确指出退出时要运行哪些析构器。
+这可能会使调试工作变得棘手。
 
-## Discussion
+要求对象和`Drop`实现若只是为了最终处理，会是很沉重的模板代码。
 
-There is some subtlety about how exactly to store the object used as a
-finalizer. It must be kept alive until the end of the function and must then be
-destroyed. The object must always be a value or uniquely owned pointer (e.g.,
-`Box<Foo>`). If a shared pointer (such as `Rc`) is used, then the finalizer can
-be kept alive beyond the lifetime of the function. For similar reasons, the
-finalizer should not be moved or returned.
+## 讨论
 
-The finalizer must be assigned into a variable, otherwise it will be destroyed
-immediately, rather than when it goes out of scope. The variable name must start
-with `_` if the variable is only used as a finalizer, otherwise the compiler
-will warn that the finalizer is never used. However, do not call the variable
-`_` with no suffix - in that case it will be destroyed immediately.
+关于如何准确地存储作为最终处理器的对象，有一些微妙的问题。
+它必须被保存到函数结束，然后必须被销毁。
+该对象必须始终是一个值或唯一拥有的指针（例如，`Box<Foo>`）。
+如果使用一个共享的指针（如`Rc`），那么最终处理器可以在函数的生命周期之外保持生存。
+出于类似的原因，最终处理器不应该被移动或返回。
 
-In Rust, destructors are run when an object goes out of scope. This happens
-whether we reach the end of block, there is an early return, or the program
-panics. When panicking, Rust unwinds the stack running destructors for each
-object in each stack frame. So, destructors get called even if the panic happens
-in a function being called.
+最终处理器必须被分配到一个变量中，否则它将被立即销毁，而不是当它超出作用域时。
+如果该变量只作为最终处理器使用，其名称必须以`_`开头，否则编译器会警告说最终处理器从未被使用。
+然而，不要调用没有后缀的变量`_`——在这种情况下，它将被立即销毁。
 
-If a destructor panics while unwinding, there is no good action to take, so Rust
-aborts the thread immediately, without running further destructors. This means
-that destructors are not absolutely guaranteed to run. It also means that you
-must take extra care in your destructors not to panic, since it could leave
-resources in an unexpected state.
+在Rust中，当一个对象超出作用域时，会运行析构器。
+这发生在我们到达块的末尾，有一个早期返回，或者程序发生panic。
+当发生panic时，Rust会展开堆栈，为每个堆栈帧中的每个对象运行析构器。
+因此，即使panic发生在被调用的函数中，析构器也会被调用。
 
-## See also
+如果在展开的过程中一个析构器发生panic，那么就没有好的行动可以采取，所以Rust会立即中止线程，而不再运行其他的析构器。
+这意味着析构器不能绝对保证运行。
+这也意味着你必须在你的析构器中格外小心，不要panic，因为它可能会让资源处于一个意想不到的状态。
 
-[RAII guards](../patterns/behavioural/RAII.md).
+## 参见
+
+[RAII守护对象](../patterns/behavioural/RAII.md)
+
+> Latest commit 9834f57 on 25 Aug 2021

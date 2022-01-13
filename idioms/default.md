@@ -1,23 +1,17 @@
-# The `Default` Trait
+# `Default` Trait
 
-## Description
+## 描述
 
-Many types in Rust have a [constructor]. However, this is *specific* to the
-type; Rust cannot abstract over "everything that has a `new()` method". To
-allow this, the [`Default`] trait was conceived, which can be used with
-containers and other generic types (e.g. see [`Option::unwrap_or_default()`]).
-Notably, some containers already implement it where applicable.
+Rust中的许多类型都有一个[构造器]。然而，这是类型*特殊*的；Rust不能抽象出“所有对象都具有`new()`方法”。
+为了允许这一点，我们设想了[`Default`]trait，它可以用于容器和其他泛型（例如，见[`Option::unwrap_or_default()`]）。
+值得注意的是，一些容器已经在适用的地方实现了它。
 
-Not only do one-element containers like `Cow`, `Box` or `Arc` implement
-`Default` for contained `Default` types, one can automatically
-`#[derive(Default)]` for structs whose fields all implement it, so the more
-types implement `Default`, the more useful it becomes.
+不仅像`Cow`、`Box`或`Arc`这样的单元素容器为所包含的`Default`类型实现了 `Default`，人们还可以自动为字段都实现了`Default`的结构体实现`#[derive(Default)]`，所以越多类型实现`Default`，它就越有用。
 
-On the other hand, constructors can take multiple arguments, while the
-`default()` method does not. There can even be multiple constructors with
-different names, but there can only be one `Default` implementation per type.
+另一方面，构造器可以接受多个参数，而`default()`方法则不能。
+甚至可以有多个名字不同的构造器，但每个类型只能有一个`Default`的实现。
 
-## Example
+## 例子
 
 ```rust
 use std::{path::PathBuf, time::Duration};
@@ -55,15 +49,16 @@ fn main() {
 }
 ```
 
-## See also
+## 参见
 
-- The [constructor] idiom is another way to generate instances that may or may
-not be "default"
-- The [`Default`] documentation (scroll down for the list of implementors)
+- [构造器]习语是另一种生成实例的方式，这些实例可能是也可能不是“默认”的。
+- [`Default`] 文档 （向下滚动查看实现者列表）
 - [`Option::unwrap_or_default()`]
 - [`derive(new)`]
 
-[constructor]: ctor.md
+[构造器]: ctor.md
 [`Default`]: https://doc.rust-lang.org/stable/std/default/trait.Default.html
 [`Option::unwrap_or_default()`]: https://doc.rust-lang.org/stable/std/option/enum.Option.html#method.unwrap_or_default
 [`derive(new)`]: https://crates.io/crates/derive-new/
+
+> Latest commit 9834f57 on 25 Aug 2021

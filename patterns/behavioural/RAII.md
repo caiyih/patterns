@@ -3,7 +3,7 @@
 ## 描述
 
 [RAII][wikipedia]代表"Resource Acquisition is Initialisation"，”资源获取即初始化“。
-该模式的本质是，资源初始化在对象的构造函数中完成，最终化（资源释放）在析构函数中完成。
+该模式的本质是，资源初始化在对象的构造器中完成，最终化（资源释放）在析构器中完成。
 这种模式在Rust中得到了扩展，即使用RAII对象作为某些资源的守护对象，并依靠类型系统来确保访问总是由守护对象来调解。
 
 ## 例子
@@ -99,7 +99,7 @@ fn deref<'a>(&'a self) -> &'a T {
 
 ## 参见
 
-[习语：在析构函数中的最终处理](../../idioms/dtor-finally.md)
+[习语：析构器中的最终处理](../../idioms/dtor-finally.md)
 
 RAII是C++中的一种常见模式：[cppreference.com](http://en.cppreference.com/w/cpp/language/raii),
 [wikipedia][wikipedia].

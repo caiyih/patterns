@@ -1,11 +1,11 @@
-# Collections are smart pointers
+# 集合是智能指针
 
-## Description
+## 描述
 
-Use the `Deref` trait to treat collections like smart pointers, offering owning
-and borrowed views of data.
+使用`Deref`trait将集合视为智能指针，提供拥有
+和借用的数据视图。
 
-## Example
+## 例子
 
 ```rust,ignore
 use std::ops::Deref;
@@ -24,56 +24,46 @@ impl<T> Deref for Vec<T> {
 }
 ```
 
-A `Vec<T>` is an owning collection of `T`s, a slice (`&[T]`) is a borrowed
-collection of `T`s. Implementing `Deref` for `Vec` allows implicit dereferencing
-from `&Vec<T>` to `&[T]` and includes the relationship in auto-derefencing
-searches. Most methods you might expect to be implemented for `Vec`s are instead
-implemented for slices.
+一个`Vec<T>`是一个拥有`T`的集合，一个切片(`&[T]`)是一个借用`T`的集合。
+为`Vec`实现`Deref`允许从`&Vec<T>`到`&[T]`的隐式解引用，并在自动解引用搜索中包含这种关系。
+你可能期望为`Vec`实现的大多数方法都是为切片实现的。
 
-See also `String` and `&str`.
+参见`String`和`&str`。
 
-## Motivation
+## 动机
 
-Ownership and borrowing are key aspects of the Rust language. Data structures
-must account for these semantics properly in order to give a good user
-experience. When implementing a data structure which owns its data, offering a
-borrowed view of that data allows for more flexible APIs.
+所有权和借用是Rust语言的关键方面。
+数据结构必须正确说明这些语义，以便提供良好的用户体验。
+当实现一个拥有其数据的数据结构时，提供该数据的借用视图可以实现更灵活的API。
 
-## Advantages
+## 优势
 
-Most methods can be implemented only for the borrowed view, they are then
-implicitly available for the owning view.
+大多数方法只为借用视图实现，然后它们隐含地对拥有视图可用。
 
-Gives clients a choice between borrowing or taking ownership of data.
+让客户端在借用或拥有数据的所有权之间做出选择。
 
-## Disadvantages
+## 劣势
 
-Methods and traits only available via dereferencing are not taken into account
-when bounds checking, so generic programming with data structures using this
-pattern can get complex (see the `Borrow` and `AsRef` traits, etc.).
+只有通过解引用才能使用的方法和trait在边界检查时不被考虑，所以使用这种模式的数据结构的泛型编程会变得很复杂（见`Borrow`和`AsRef`trait等）。
 
-## Discussion
+## 讨论
 
-Smart pointers and collections are analogous: a smart pointer points to a single
-object, whereas a collection points to many objects. From the point of view of
-the type system there is little difference between the two. A collection owns
-its data if the only way to access each datum is via the collection and the
-collection is responsible for deleting the data (even in cases of shared
-ownership, some kind of borrowed view may be appropriate). If a collection owns
-its data, it is usually useful to provide a view of the data as borrowed so that
-it can be referenced multiple times.
+智能指针和集合是类似的：一个智能指针指向一个对象，而一个集合指向许多对象。
+从类型系统的角度来看，这两者之间没有什么区别。
+如果访问每个数据的唯一途径是通过集合，并且集合负责删除数据（即使在共享所有权的情况下，某种借用视图可能是合适的），那么集合就拥有它的数据。
+如果集合拥有它的数据，提供借用数据的视图通常是有用的，这样它就可以被多次引用了。
 
-Most smart pointers (e.g., `Foo<T>`) implement `Deref<Target=T>`. However,
-collections will usually dereference to a custom type. `[T]` and `str` have some
-language support, but in the general case, this is not necessary. `Foo<T>` can
-implement `Deref<Target=Bar<T>>` where `Bar` is a dynamically sized type and
-`&Bar<T>` is a borrowed view of the data in `Foo<T>`.
+大多数智能指针（例如，`Foo<T>`）实现了`Deref<Target=T>`。
+然而，集合通常会解引用到一个自定义的类型。
+ `[T]`和`str`有一些语言支持，但在一般情况下，这是没有必要的。
+ `Foo<T>`可以实现`Deref<Target=Bar<T>`，其中`Bar`是一个动态大小的类型，`&Bar<T>`是对`Foo<T>`中数据的借用视图。
 
-Commonly, ordered collections will implement `Index` for `Range`s to provide
-slicing syntax. The target will be the borrowed view.
+通常，有序集合为`Range`实现`Index`，以提供分片语法。目标是借用视图。
 
-## See also
+## 参见
 
-[Deref polymorphism anti-pattern](../anti_patterns/deref.md).
+[反面模式：解引用多态性](../anti_patterns/deref.md).
 
-[Documentation for `Deref` trait](https://doc.rust-lang.org/std/ops/trait.Deref.html).
+[`Deref` trait 文档](https://doc.rust-lang.org/std/ops/trait.Deref.html).
+
+> Latest commit 66d7e6c on 2 Oct 2021
