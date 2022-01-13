@@ -1,29 +1,24 @@
-# Passing Strings
+# 传递字符串
 
-## Description
+## 描述
 
-When passing strings to FFI functions, there are four principles that should be
-followed:
+当向FFI函数传递字符串时，应该遵循四个原则：
 
-1. Make the lifetime of owned strings as long as possible.
-2. Minimize `unsafe` code during the conversion.
-3. If the C code can modify the string data, use `Vec` instead of `CString`.
-4. Unless the Foreign Function API requires it, the ownership of the string
-  should not transfer to the callee.
+1. 使拥有的字符串的生命周期尽可能长。
+2. 在转换过程中尽量减少`unsafe`代码。
+3. 如果C代码可以修改字符串数据，使用`Vec`而不是`CString`。
+4. 除非外部函数API要求，否则字符串的所有权不应该转移给被调用者。
 
-## Motivation
+## 动机
 
-Rust has built-in support for C-style strings with its `CString` and `CStr`
-types. However, there are different approaches one can take with strings that
-are being sent to a foreign function call from a Rust function.
+Rust内置了对C风格字符串的支持，有`CString`和`CStr`类型。
+然而，对于从Rust函数中发送字符串到外部函数调用，我们可以采取不同的方法。
 
-The best practice is simple: use `CString` in such a way as to minimize
-`unsafe` code. However, a secondary caveat is that
-*the object must live long enough*, meaning the lifetime should be maximized.
-In addition, the documentation explains that "round-tripping" a `CString` after
-modification is UB, so additional work is necessary in that case.
+最好的做法很简单：用`CString`的方式来减少`unsafe`的代码。
+然而，次要的注意事项是，*对象必须活得足够长*，这意味着生命周期应该最大化。
+此外，文档解释说，`CString`进行"round-tripping"修改是未定义行为，所以在这种情况下需要额外的工作。
 
-## Code Example
+## 代码示例
 
 ```rust,ignore
 pub mod unsafe_module {
@@ -65,16 +60,15 @@ pub mod unsafe_module {
 }
 ```
 
-## Advantages
+## 优势
 
-The example is written in a way to ensure that:
+这个例子的编写方式是为了确保：
 
-1. The `unsafe` block is as small as possible.
-2. The `CString` lives long enough.
-3. Errors with typecasts are always propagated when possible.
+1. `unsafe`块尽可能小。
+2. `CString`存活得足够久。
+3. 类型转换的错误被尽可能传播。
 
-A common mistake (so common it's in the documentation) is to not use the
-variable in the first block:
+一个常见的错误（常见到在文档中）是不在第一个块中使用变量：
 
 ```rust,ignore
 pub mod unsafe_module {
@@ -91,15 +85,13 @@ pub mod unsafe_module {
 }
 ```
 
-This code will result in a dangling pointer, because the lifetime of the
-`CString` is not extended by the pointer creation, unlike if a reference were
-created.
+这段代码将导致一个悬垂指针，因为`CString`的生命周期并没有因为指针的创建而延长，这与创建引用的情况不同。
 
-Another issue frequently raised is that the initialization of a 1k vector of
-zeroes is "slow". However, recent versions of Rust actually optimize that
-particular macro to a call to `zmalloc`, meaning it is as fast as the operating
-system's ability to return zeroed memory (which is quite fast).
+另一个经常提出的问题是，初始化1k个零的向量是“慢”的。
+然而，最近的Rust版本实际上将这个特殊的宏优化为对`zmalloc`的调用，这意味着它的速度和操作系统返回零内存的能力一样快（这相当快）。
 
-## Disadvantages
+## 劣势
 
-None?
+没有？
+
+> Latest commit 606bcff on 26 Feb 2021

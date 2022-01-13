@@ -71,7 +71,7 @@ impl Bar {
 
 ## 劣势
 
-最重要的是这是一个令人惊讶的习语--未来的程序员在代码中读到这句话时，不会想到会发生这种情况。
+最重要的是这是一个令人惊讶的惯常做法--未来的程序员在代码中读到这句话时，不会想到会发生这种情况。
 这既因为我们在滥用`Deref` trait，而不是按照预期（文档等）使用它。
 也因为这里的机制是完全隐含的。
 
@@ -100,7 +100,7 @@ Rust试图在显式和隐式机制之间取得谨慎的平衡，倾向于类型�
 
 ## 参见
 
-- [集合是智能指针的习语](../idioms/deref.md).
+- [集合是智能指针的惯常做法](../idioms/deref.md).
 - 为了较少的模板代码的代表crate [delegate](https://crates.io/crates/delegate)
   或[ambassador](https://crates.io/crates/ambassador)
 - [`Deref` trait文档](https://doc.rust-lang.org/std/ops/trait.Deref.html).

@@ -93,7 +93,7 @@ impl Second {
 
 ## 参见
 
-- [default 习语](default.md)对`Default`trait更深入的描述。
+- [default 惯常做法](default.md)对`Default`trait更深入的描述。
 
 - [生成器模式](../patterns/creational/builder.md)用于构建有多种配置的对象。
 

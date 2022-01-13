@@ -1,7 +1,7 @@
 # Summary
 
 - [简介](./intro.md)
-- [习语](./idioms/index.md)
+- [惯常做法](./idioms/index.md)
   - [使用借用类型作为参数](./idioms/coercion-arguments.md)
   - [用`format!`串联字符串](./idioms/concat-format.md)
   - [构造器](./idioms/ctor.md)
@@ -10,10 +10,10 @@
   - [析构器中的最终处理](./idioms/dtor-finally.md)
   - [`mem::{take(_), replace(_)}`](./idioms/mem-replace.md)
   - [栈上动态分发](./idioms/on-stack-dyn-dispatch.md)
-  - [Foreign function interface (FFI)](./idioms/ffi/intro.md)
-    - [Idiomatic Errors](./idioms/ffi/errors.md)
-    - [Accepting Strings](./idioms/ffi/accepting-strings.md)
-    - [Passing Strings](./idioms/ffi/passing-strings.md)
+  - [外部函数接口(FFI)](./idioms/ffi/intro.md)
+    - [错误处理的惯常做法](./idioms/ffi/errors.md)
+    - [接受字符串](./idioms/ffi/accepting-strings.md)
+    - [传递字符串](./idioms/ffi/passing-strings.md)
   - [Iterating over an `Option`](./idioms/option-iter.md)
   - [Pass Variables to Closure](./idioms/pass-var-to-closure.md)
   - [Privacy For Extensibility](./idioms/priv-extend.md)
@@ -35,7 +35,7 @@
     - [组合结构体](./patterns/structural/compose-structs.md)
     - [倾向于较小的Crates](./patterns/structural/small-crates.md)
     - [把不安全因素放在小模块中](./patterns/structural/unsafe-mods.md)
-  - [外部函数接口（FFI）](./patterns/ffi/intro.md)
+  - [外部函数接口(FFI)](./patterns/ffi/intro.md)
     - [基于对象的API](./patterns/ffi/export.md)
     - [类型合并](./patterns/ffi/wrappers.md)
 

@@ -99,7 +99,7 @@ fn deref<'a>(&'a self) -> &'a T {
 
 ## 参见
 
-[习语：析构器中的最终处理](../../idioms/dtor-finally.md)
+[惯常做法：析构器中的最终处理](../../idioms/dtor-finally.md)
 
 RAII是C++中的一种常见模式：[cppreference.com](http://en.cppreference.com/w/cpp/language/raii),
 [wikipedia][wikipedia].

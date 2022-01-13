@@ -1,6 +1,6 @@
-# 习语
+# 惯常做法
 
-[习语](https://en.wikipedia.org/wiki/Programming_idiom)是常用的风格和模式，主要由一个社区商定。它们是准则。
+[惯常做法](https://en.wikipedia.org/wiki/Programming_idiom)是常用的风格和模式，主要由一个社区商定。它们是准则。
 编写习惯性代码可以让其他开发者了解正在发生的事情，因为他们熟悉它的形式。
 
 计算机能够理解由编译器生成的机器代码。
