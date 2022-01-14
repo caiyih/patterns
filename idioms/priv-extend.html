@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Privacy For Extensibility - Rust Design Patterns</title>
+        <title>可扩展性 - Rust Design Patterns</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 惯常做法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> 用format!串联字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> 构造器</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> 集合是智能指针</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> 析构器中的最终处理</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> 栈上动态分发</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> 错误处理的惯常做法</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> 接受字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> 传递字符串</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Option的迭代</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> 传递变量到闭包</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html" class="active"><strong aria-hidden="true">2.12.</strong> Privacy For Extensibility</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> Easy doc initialization</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> Temporary mutability</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问器</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> 结构型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> 组合结构体</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> 倾向于较小的Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> 把不安全因素放在小模块中</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> 基于对象的API</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> 类型合并</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 惯常做法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> 用format!串联字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> 构造器</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> 集合是智能指针</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> 析构器中的最终处理</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> 栈上动态分发</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> 错误处理的惯常做法</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> 接受字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> 传递字符串</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Option的迭代</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> 传递变量到闭包</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html" class="active"><strong aria-hidden="true">2.12.</strong> 可扩展性</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> 简单的文档初始化</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> 临时可变性</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问器</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> 结构型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> 组合结构体</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> 倾向于较小的Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> 把不安全因素放在小模块中</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> 基于对象的API</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> 类型合并</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -146,21 +146,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="non_exhaustive-and-private-fields-for-extensibility"><a class="header" href="#non_exhaustive-and-private-fields-for-extensibility"><code>#[non_exhaustive]</code> and private fields for extensibility</a></h1>
+                        <h1 id="non_exhaustive和私有字段的可扩展性"><a class="header" href="#non_exhaustive和私有字段的可扩展性"><code>#[non_exhaustive]</code>和私有字段的可扩展性</a></h1>
 <h2 id="描述"><a class="header" href="#描述">描述</a></h2>
-<p>A small set of scenarios exist where a library author may want to add public
-fields to a public struct or new variants to an enum without breaking backwards
-compatibility.</p>
-<p>Rust offers two solutions to this problem:</p>
+<p>在一小部分情况下，库作者可能想在不破坏后向兼容性的情况下，为公共结构体添加公共字段或为枚举添加新的变体。</p>
+<p>Rust为这个问题提供了两种解决方案：</p>
 <ul>
 <li>
-<p>Use <code>#[non_exhaustive]</code> on <code>struct</code>s, <code>enum</code>s, and <code>enum</code> variants.
-For extensive documentation on all the places where <code>#[non_exhaustive]</code> can be
-used, see <a href="https://doc.rust-lang.org/reference/attributes/type_system.html#the-non_exhaustive-attribute">the docs</a>.</p>
+<p>在<code>struct</code>，<code>enum</code>和<code>enum</code>变体上使用<code>#[non_exhaustive]</code>。
+关于所有可以使用<code>#[non_exhaustive]</code>的地方的详细文档，见<a href="https://doc.rust-lang.org/reference/attributes/type_system.html#the-non_exhaustive-attribute">文档</a>。</p>
 </li>
 <li>
-<p>You may add a private field to a struct to prevent it from being directly
-instantiated or matched against (see Alternative)</p>
+<p>你可以向结构体添加一个私有字段，以防止它被直接实例化或与之匹配（见备选方案）。</p>
 </li>
 </ul>
 <h2 id="例子"><a class="header" href="#例子">例子</a></h2>
@@ -203,21 +199,15 @@ fn print_matched_variants(s: a::S) {
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="alternative-private-fields-for-structs"><a class="header" href="#alternative-private-fields-for-structs">Alternative: <code>Private fields</code> for structs</a></h2>
-<p><code>#[non_exhaustive]</code> only works across crate boundaries.
-Within a crate, the private field method may be used.</p>
-<p>Adding a field to a struct is a mostly backwards compatible change.
-However, if a client uses a pattern to deconstruct a struct instance, they
-might name all the fields in the struct and adding a new one would break that
-pattern.
-The client could name some fields and use <code>..</code> in the pattern, in which case adding
-another field is backwards compatible.
-Making at least one of the struct's fields private forces clients to use the latter
-form of patterns, ensuring that the struct is future-proof.</p>
-<p>The downside of this approach is that you might need to add an otherwise unneeded
-field to the struct.
-You can use the <code>()</code> type so that there is no runtime overhead and prepend <code>_</code> to
-the field name to avoid the unused field warning.</p>
+<h2 id="备选方案结构体的private-fields"><a class="header" href="#备选方案结构体的private-fields">备选方案：结构体的<code>Private fields</code></a></h2>
+<p><code>#[non_exhaustive]</code>只适用于跨crate边界的情况。
+在一个crate内，可以使用私有字段方法。</p>
+<p>在结构体中添加字段基本上是一个向后兼容的变化。
+然而，如果客户端使用某种模式来解构结构体实例，他们可能会命名结构体中的所有字段，而添加新字段会破坏这种模式。
+客户端可以命名一些字段并在模式中使用<code>..</code>，在这种情况下，添加另一个字段是向后兼容的。
+将结构体中的至少一个字段设置为私有，迫使客户端使用后一种形式的模式，确保结构体是面向未来的。</p>
+<p>这种方法的缺点是，你可能需要在结构体中添加一个原本不需要的字段。
+你可以使用<code>()</code>类型，这样就没有运行时的开销，并在字段名前加上<code>_</code>，以避免未使用字段的警告。</p>
 <pre><pre class="playground"><code class="language-rust edition2018">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -229,37 +219,24 @@ the field name to avoid the unused field warning.</p>
 }
 <span class="boring">}
 </span></code></pre></pre>
-<h2 id="discussion"><a class="header" href="#discussion">Discussion</a></h2>
-<p>On <code>struct</code>s, <code>#[non_exhaustive]</code> allows adding additional fields in a backwards
-compatible way.
-It will also prevent clients from using the struct constructor, even if all the
-fields are public.
-This may be helpful, but it's worth considering if you <em>want</em> an additional field
-to be found by clients as a compiler error rather than something that may be silently
-undiscovered.</p>
-<p><code>#[non_exhaustive]</code> can be applied to enum variants as well.
-A <code>#[non_exhaustive]</code> variant behaves in the same way as a <code>#[non_exhaustive]</code> struct.</p>
-<p>Use this deliberately and with caution: incrementing the major version when adding
-fields or variants is often a better option.
-<code>#[non_exhaustive]</code> may be appropriate in scenarios where you're modeling an external
-resource that may change out-of-sync with your library, but is not a general purpose
-tool.</p>
-<h3 id="disadvantages"><a class="header" href="#disadvantages">Disadvantages</a></h3>
-<p><code>#[non_exhaustive]</code> can make your code much less ergonomic to use, especially when
-forced to handle unknown enum variants.
-It should only be used when these sorts of evolutions are required <strong>without</strong>
-incrementing the major version.</p>
-<p>When <code>#[non_exhaustive]</code> is applied to <code>enum</code>s, it forces clients to handle a
-wildcard variant.
-If there is no sensible action to take in this case, this may lead to awkward
-code and code paths that are only executed in extremely rare circumstances.
-If a client decides to <code>panic!()</code> in this scenario, it may have been better to
-expose this error at compile time.
-In fact, <code>#[non_exhaustive]</code> forces clients to handle the &quot;Something else&quot; case;
-there is rarely a sensible action to take in this scenario.</p>
-<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<h2 id="讨论"><a class="header" href="#讨论">讨论</a></h2>
+<p>在<code>struct</code>上，<code>#[non_exhaustive]</code>允许以向后兼容的方式添加额外字段。
+它也会阻止客户端使用结构体的构造器，即使所有字段都是公开的。
+这可能很有帮助，但值得考虑的是，你是否<em>希望</em>额外的字段被客户端发现是一个编译器错误，而不是默默地不被发现。</p>
+<p><code>#[non_exhaustive]</code>也可以应用于枚举的变体。
+<code>#[non_exhaustive]</code>变体的行为与<code>#[non_exhaustive]</code>结构体的行为相同。</p>
+<p>慎重使用：在添加字段或变体时，增加主版本通常是更好的选择。
+<code>#[non_exhaustive]</code>可能适用于这样的情况：你正在为一个可能与你的库不同步变化的外部资源建模，但这不是一个通用工具。</p>
+<h3 id="劣势"><a class="header" href="#劣势">劣势</a></h3>
+<p><code>#[non_exhaustive]</code>会使你的代码使用起来更不符合人体工程学，特别是在被迫处理未知的枚举变体的时候。
+它应该只在需要这些改变，却又<strong>不需要</strong>递增主版本时使用。</p>
+<p>当<code>#[non_exhaustive]</code>被应用于<code>enum</code>时，它迫使客户端处理通配符变体。
+如果在这种情况下没有采取合理的行动，这可能会导致丑陋的代码和只在极其罕见情况下才会执行的代码路径。
+如果客户端在这种情况下决定<code>panic!()</code>，那么在编译时暴露这个错误可能会更好。
+事实上，<code>#[non_exhaustive]</code>迫使客户端处理&quot;Something else&quot;的情况；在这种情况下，很少有明智的行动可以采取。</p>
+<h2 id="参见"><a class="header" href="#参见">参见</a></h2>
 <ul>
-<li><a href="https://github.com/rust-lang/rfcs/blob/master/text/2008-non-exhaustive.md">RFC introducing #[non_exhaustive] attribute for enums and structs</a></li>
+<li><a href="https://github.com/rust-lang/rfcs/blob/master/text/2008-non-exhaustive.md">为枚举和结构体引入#[non_exhaustive]属性的RFC</a></li>
 </ul>
 <blockquote>
 <p>Latest commit 567a1f1 on 1 Sep 2021</p>
