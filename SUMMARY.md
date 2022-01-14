@@ -16,9 +16,9 @@
     - [传递字符串](./idioms/ffi/passing-strings.md)
   - [`Option`的迭代](./idioms/option-iter.md)
   - [传递变量到闭包](./idioms/pass-var-to-closure.md)
-  - [Privacy For Extensibility](./idioms/priv-extend.md)
-  - [Easy doc initialization](./idioms/rustdoc-init.md)
-  - [Temporary mutability](./idioms/temporary-mutability.md)
+  - [可扩展性](./idioms/priv-extend.md)
+  - [简单的文档初始化](./idioms/rustdoc-init.md)
+  - [临时可变性](./idioms/temporary-mutability.md)
 
 - [设计模式](./patterns/index.md)
   - [行为型](./patterns/behavioural/intro.md)

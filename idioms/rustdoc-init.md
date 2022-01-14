@@ -1,17 +1,15 @@
-# Easy doc initialization
+# 简单的文档初始化
 
-## Description
+## 描述
 
-If a struct takes significant effort to initialize, when writing docs, it can be
-quicker to wrap your example with a helper function which takes the struct as an
-argument.
+如果一个结构体需要花费大量精力来初始化，那么在编写文档时，用一个将结构体作为参数的辅助函数来包装你的例子可能会更快。
 
-## Motivation
+## 动机
 
-Sometimes there is a struct with multiple or complicated parameters and several
-methods. Each of these methods should have examples.
+有时，一个结构体有多个或复杂的参数和几个方法。
+这些方法中的每一个都应该有例子。
 
-For example:
+例如：
 
 ```rust,ignore
 struct Connection {
@@ -42,11 +40,9 @@ impl Connection {
 }
 ```
 
-## Example
+## 例子
 
-Instead of typing all of this boilerplate to create an `Connection` and
-`Request` it is easier to just create a wrapping helper function which takes
-them as arguments:
+与其输入所有这些模板代码来创建一个`Connection`和`Request`，不如直接创建一个将它们作为参数的包装辅助函数：
 
 ```rust,ignore
 struct Connection {
@@ -70,25 +66,23 @@ impl Connection {
 }
 ```
 
-**Note** in the above example the line `assert!(response.is_ok());` will not
-actually run while testing because it is inside a function which is never
-invoked.
+**注意：**在上面的例子中，`assert!(response.is_ok());`这一行在测试时不会实际运行，因为它是在一个从未被调用的函数中。
 
-## Advantages
+## 优势
 
-This is much more concise and avoids repetitive code in examples.
+更简洁，避免了例子中的重复代码。
 
-## Disadvantages
+## 劣势
 
-As example is in a function, the code will not be tested. Though it will still be
-checked to make sure it compiles when running a `cargo test`. So this pattern is
-most useful when you need `no_run`. With this, you do not need to add `no_run`.
+由于例子是在一个函数中，代码将不会被测试。
+尽管在运行`cargo test`时，它仍然会被检查，以确保它能编译。
+所以当你需要`no_run`时，这种模式是最有用的。有了这个，你不需要添加`no_run`。
 
-## Discussion
+## 讨论
 
-If assertions are not required this pattern works well.
+如果不需要断言，这种模式很好用。
 
-If they are, an alternative can be to create a public method to create a helper
-instance which is annotated with `#[doc(hidden)]` (so that users won't see it).
-Then this method can be called inside of rustdoc because it is part of the
-crate's public API.
+如果需要，另一种方法是创建一个公共方法来创建一个帮助器实例，该方法被标注为`#[doc(hidden)]`（这样用户就不会看到它）。
+然后这个方法可以在rustdoc内部被调用，因为它是crate公共API的一部分。
+
+> Latest commit 9834f57 on 25 Aug 2021

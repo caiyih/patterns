@@ -1,19 +1,17 @@
-# Temporary mutability
+# 临时可变性
 
-## Description
+## 描述
 
-Often it is necessary to prepare and process some data, but after that data are
-only inspected and never modified. The intention can be made explicit by redefining
-the mutable variable as immutable.
+通常在准备和处理一些数据后，数据只是被检查，而不会被修改。
+这个意图可以通过重新定义可变变量为不可变的来明确。
 
-It can be done either by processing data within nested block or by redefining
-variable.
+这可以通过在嵌套块内处理数据或重新定义变量来实现。
 
-## Example
+## 例子
 
-Say, vector must be sorted before usage.
+假定向量在使用前必须进行排序。
 
-Using nested block:
+使用嵌套块：
 
 ```rust,ignore
 let data = {
@@ -25,7 +23,7 @@ let data = {
 // Here `data` is immutable.
 ```
 
-Using variable rebinding:
+使用变量重绑定：
 
 ```rust,ignore
 let mut data = get_vec();
@@ -35,11 +33,13 @@ let data = data;
 // Here `data` is immutable.
 ```
 
-## Advantages
+## 优势
 
-Compiler ensures that you don't accidentally mutate data after some point.
+由编译器来确保你不会在某个时间点之后意外地改变数据。
 
-## Disadvantages
+## 劣势
 
-Nested block requires additional indentation of block body.
-One more line to return data from block or redefine variable.
+嵌套块需要额外缩进。
+多写一行，从块中返回数据或重新定义变量。
+
+> Latest commit 2cd70a5 on 22 Jan 2021
