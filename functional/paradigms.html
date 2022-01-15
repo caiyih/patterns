@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Programming paradigms - Rust Design Patterns</title>
+        <title>编程范式 - Rust Design Patterns</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 惯常做法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> 用format!串联字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> 构造器</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> 集合是智能指针</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> 析构器中的最终处理</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> 栈上动态分发</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> 错误处理的惯常做法</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> 接受字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> 传递字符串</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Option的迭代</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> 传递变量到闭包</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> 可扩展性</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> 简单的文档初始化</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> 临时可变性</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问器</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> 结构型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> 组合结构体</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> 倾向于较小的Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> 把不安全因素放在小模块中</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> 基于对象的API</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> 类型合并</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> Functional Programming</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html" class="active"><strong aria-hidden="true">5.1.</strong> Programming paradigms</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> Design principles</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../intro.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../idioms/index.html"><strong aria-hidden="true">2.</strong> 惯常做法</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/coercion-arguments.html"><strong aria-hidden="true">2.1.</strong> 使用借用类型作为参数</a></li><li class="chapter-item expanded "><a href="../idioms/concat-format.html"><strong aria-hidden="true">2.2.</strong> 用format!串联字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ctor.html"><strong aria-hidden="true">2.3.</strong> 构造器</a></li><li class="chapter-item expanded "><a href="../idioms/default.html"><strong aria-hidden="true">2.4.</strong> Default Trait</a></li><li class="chapter-item expanded "><a href="../idioms/deref.html"><strong aria-hidden="true">2.5.</strong> 集合是智能指针</a></li><li class="chapter-item expanded "><a href="../idioms/dtor-finally.html"><strong aria-hidden="true">2.6.</strong> 析构器中的最终处理</a></li><li class="chapter-item expanded "><a href="../idioms/mem-replace.html"><strong aria-hidden="true">2.7.</strong> mem::{take(), replace()}</a></li><li class="chapter-item expanded "><a href="../idioms/on-stack-dyn-dispatch.html"><strong aria-hidden="true">2.8.</strong> 栈上动态分发</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/intro.html"><strong aria-hidden="true">2.9.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../idioms/ffi/errors.html"><strong aria-hidden="true">2.9.1.</strong> 错误处理的惯常做法</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/accepting-strings.html"><strong aria-hidden="true">2.9.2.</strong> 接受字符串</a></li><li class="chapter-item expanded "><a href="../idioms/ffi/passing-strings.html"><strong aria-hidden="true">2.9.3.</strong> 传递字符串</a></li></ol></li><li class="chapter-item expanded "><a href="../idioms/option-iter.html"><strong aria-hidden="true">2.10.</strong> Option的迭代</a></li><li class="chapter-item expanded "><a href="../idioms/pass-var-to-closure.html"><strong aria-hidden="true">2.11.</strong> 传递变量到闭包</a></li><li class="chapter-item expanded "><a href="../idioms/priv-extend.html"><strong aria-hidden="true">2.12.</strong> 可扩展性</a></li><li class="chapter-item expanded "><a href="../idioms/rustdoc-init.html"><strong aria-hidden="true">2.13.</strong> 简单的文档初始化</a></li><li class="chapter-item expanded "><a href="../idioms/temporary-mutability.html"><strong aria-hidden="true">2.14.</strong> 临时可变性</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/index.html"><strong aria-hidden="true">3.</strong> 设计模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/intro.html"><strong aria-hidden="true">3.1.</strong> 行为型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/behavioural/command.html"><strong aria-hidden="true">3.1.1.</strong> 命令</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/interpreter.html"><strong aria-hidden="true">3.1.2.</strong> 解释器</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/newtype.html"><strong aria-hidden="true">3.1.3.</strong> 新类型</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/RAII.html"><strong aria-hidden="true">3.1.4.</strong> RAII守护对象</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/strategy.html"><strong aria-hidden="true">3.1.5.</strong> 策略</a></li><li class="chapter-item expanded "><a href="../patterns/behavioural/visitor.html"><strong aria-hidden="true">3.1.6.</strong> 访问器</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/creational/intro.html"><strong aria-hidden="true">3.2.</strong> 建造型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/creational/builder.html"><strong aria-hidden="true">3.2.1.</strong> 生成器</a></li><li class="chapter-item expanded "><a href="../patterns/creational/fold.html"><strong aria-hidden="true">3.2.2.</strong> Fold</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/structural/intro.html"><strong aria-hidden="true">3.3.</strong> 结构型</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/structural/compose-structs.html"><strong aria-hidden="true">3.3.1.</strong> 组合结构体</a></li><li class="chapter-item expanded "><a href="../patterns/structural/small-crates.html"><strong aria-hidden="true">3.3.2.</strong> 倾向于较小的Crates</a></li><li class="chapter-item expanded "><a href="../patterns/structural/unsafe-mods.html"><strong aria-hidden="true">3.3.3.</strong> 把不安全因素放在小模块中</a></li></ol></li><li class="chapter-item expanded "><a href="../patterns/ffi/intro.html"><strong aria-hidden="true">3.4.</strong> 外部函数接口(FFI)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../patterns/ffi/export.html"><strong aria-hidden="true">3.4.1.</strong> 基于对象的API</a></li><li class="chapter-item expanded "><a href="../patterns/ffi/wrappers.html"><strong aria-hidden="true">3.4.2.</strong> 类型合并</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../anti_patterns/index.html"><strong aria-hidden="true">4.</strong> 反面模式</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../anti_patterns/borrow_clone.html"><strong aria-hidden="true">4.1.</strong> 通过Clone来满足借用检查器</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deny-warnings.html"><strong aria-hidden="true">4.2.</strong> #[deny(warnings)]</a></li><li class="chapter-item expanded "><a href="../anti_patterns/deref.html"><strong aria-hidden="true">4.3.</strong> 解引用多态性</a></li></ol></li><li class="chapter-item expanded "><a href="../functional/index.html"><strong aria-hidden="true">5.</strong> 函数式编程</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../functional/paradigms.html" class="active"><strong aria-hidden="true">5.1.</strong> 编程范式</a></li><li class="chapter-item expanded "><a href="../functional/generics-type-classes.html"><strong aria-hidden="true">5.2.</strong> Generics as Type Classes</a></li></ol></li><li class="chapter-item expanded "><a href="../additional_resources/index.html"><strong aria-hidden="true">6.</strong> Additional Resources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../additional_resources/design-principles.html"><strong aria-hidden="true">6.1.</strong> 设计原则</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -146,12 +146,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="programming-paradigms"><a class="header" href="#programming-paradigms">Programming paradigms</a></h1>
-<p>One of the biggest hurdles to understanding functional programs when coming
-from an imperative background is the shift in thinking. Imperative programs
-describe <strong>how</strong> to do something, whereas declarative programs describe
-<strong>what</strong> to do. Let's sum the numbers from 1 to 10 to show this.</p>
-<h2 id="imperative"><a class="header" href="#imperative">Imperative</a></h2>
+                        <h1 id="编程范式"><a class="header" href="#编程范式">编程范式</a></h1>
+<p>理解函数式程序的最大障碍之一是命令式程序背景下的思维转变。
+命令式程序描述的是<strong>如何</strong>做某事，而声明式程序描述的是<strong>什么</strong>做什么。
+让我们把1到10的数字相加来说明这一点。</p>
+<h2 id="命令式"><a class="header" href="#命令式">命令式</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2018">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
@@ -162,11 +161,11 @@ for i in 1..11 {
 println!(&quot;{}&quot;, sum);
 <span class="boring">}
 </span></code></pre></pre>
-<p>With imperative programs, we have to play compiler to see what is happening.
-Here, we start with a <code>sum</code> of <code>0</code>.
-Next, we iterate through the range from 1 to 10.
-Each time through the loop, we add the corresponding value in the range.
-Then we print it out.</p>
+<p>对于命令式程序，我们必须模拟编译器来看看发生了什么。
+在这里，我们从一个值为<code>0</code>的<code>sum</code>开始。
+接下来，我们在1到10的范围内进行迭代。
+循环的每一次，我们在范围内加上相应的值。
+最后我们把它打印出来。</p>
 <table><thead><tr><th align="center"><code>i</code></th><th align="center"><code>sum</code></th></tr></thead><tbody>
 <tr><td align="center">1</td><td align="center">1</td></tr>
 <tr><td align="center">2</td><td align="center">3</td></tr>
@@ -179,25 +178,24 @@ Then we print it out.</p>
 <tr><td align="center">9</td><td align="center">45</td></tr>
 <tr><td align="center">10</td><td align="center">55</td></tr>
 </tbody></table>
-<p>This is how most of us start out programming. We learn that a program is a set
-of steps.</p>
-<h2 id="declarative"><a class="header" href="#declarative">Declarative</a></h2>
+<p>这就是我们大多数人开始编程的方式。
+我们知道，一个程序就是一个步骤的集合。</p>
+<h2 id="声明式"><a class="header" href="#声明式">声明式</a></h2>
 <pre><pre class="playground"><code class="language-rust edition2018">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>println!(&quot;{}&quot;, (1..11).fold(0, |a, b| a + b));
 <span class="boring">}
 </span></code></pre></pre>
-<p>Whoa! This is really different! What's going on here?
-Remember that with declarative programs we are describing <strong>what</strong> to do,
-rather than <strong>how</strong> to do it. <code>fold</code> is a function that <a href="https://en.wikipedia.org/wiki/Function_composition">composes</a>
-functions. The name is a convention from Haskell.</p>
-<p>Here, we are composing functions of addition (this closure: <code>|a, b| a + b</code>)
-with a range from 1 to 10. The <code>0</code> is the starting point, so <code>a</code> is <code>0</code> at
-first. <code>b</code> is the first element of the range, <code>1</code>. <code>0 + 1 = 1</code> is the result.
-So now we <code>fold</code> again, with <code>a = 1</code>, <code>b = 2</code> and so <code>1 + 2 = 3</code> is the next
-result. This process continues until we get to the last element in the range,
-<code>10</code>.</p>
+<p>哇! 这真的很不一样! 这里发生了什么？
+请记住，在声明性程序中，我们描述的是<strong>做什么</strong>，而不是<strong>如何</strong>做它。
+<code>fold</code>是一个可以<a href="https://en.wikipedia.org/wiki/Function_composition">组合</a>函数的函数。
+这个名字是来自Haskell的一个惯例。</p>
+<p>在这里，我们正在组成加法的函数（闭包：<code>|a, b| a + b</code>），范围是从1到10。
+<code>0</code>是起点，所以<code>a</code>一开始就是<code>0</code>。
+<code>b</code>是范围的第一个元素，<code>1</code>。<code>0 + 1 = 1</code>是结果。
+所以现在我们再次<code>fold</code>，<code>a = 1</code>，<code>b = 2</code>，所以<code>1 + 2 = 3</code>是下一个结果。
+这个过程一直持续到我们得到范围内的最后一个元素，<code>10</code>。</p>
 <table><thead><tr><th align="center"><code>a</code></th><th align="center"><code>b</code></th><th align="center">result</th></tr></thead><tbody>
 <tr><td align="center">0</td><td align="center">1</td><td align="center">1</td></tr>
 <tr><td align="center">1</td><td align="center">2</td><td align="center">3</td></tr>
@@ -210,6 +208,9 @@ result. This process continues until we get to the last element in the range,
 <tr><td align="center">36</td><td align="center">9</td><td align="center">45</td></tr>
 <tr><td align="center">45</td><td align="center">10</td><td align="center">55</td></tr>
 </tbody></table>
+<blockquote>
+<p>Latest commit 2cd70a5 on 22 Jan 2021</p>
+</blockquote>
 
                     </main>
 
