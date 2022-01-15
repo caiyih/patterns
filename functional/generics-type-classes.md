@@ -1,38 +1,38 @@
-# Generics as Type Classes
+# 作为类型类的泛型
 
 ## 描述
 
 Rust的类型系统设计得更像函数式语言（如Haskell）而不是命令式语言（如Java和C++）。
-因此，Rust可以把许多类型的编程问题变成 "静态类型 "问题。
-这是选择函数式语言的最大优势之一，对Rust的许多编译时间保证至关重要。
+因此，Rust可以把许多类型的编程问题变成“静态类型”问题。
+这是选择函数式语言的最大优势之一，对Rust的许多编译时保证至关重要。
 
-A key part of this idea is the way generic types work. In C++ and Java, for example, generic types are a meta-programming construct for the compiler.
-`vector<int>` and `vector<char>` in C++ are just two different copies of the same boilerplate code for a `vector` type (known as a `template`)  with two different types filled in.
+这个想法的一个关键部分是泛型的工作方式。例如，在C++和Java中，泛型是编译器的一个元编程结构。
+C++中的`vector<int>`和`vector<char>`只是一个`vector`类型（被称为`template`）的相同模板代码的两个不同副本，其中填入了两种不同类型。
 
-In Rust, a generic type parameter creates what is known in functional languages as a "type class constraint", and each different parameter filled in by an end user *actually changes the type*. 
-In other words, `Vec<isize>` and `Vec<char>` *are two different types*, which are recognized as distinct by all parts of the type system.
+在Rust中，泛型参数创建了函数式语言中所谓的“类型类约束”，用户填写的每个不同的参数*实际上都会改变类型*。
+换句话说，`Vec<isize>`和`Vec<char>`*是两种不同的类型*，被类型系统的所有部分识别为不同的类型。
 
-This is called **monomorphization**, where different types are created from **polymorphic** code.  
-This special behavior requires `impl` blocks to specify generic parameters: different values for the generic type cause different types, and different types can have different `impl` blocks.
+这被称为**单态化**，不同的类型由**多态的**代码创建。 
+这种特殊的行为需要`impl`块来指定泛型参数：泛型的不同值会导致不同的类型，而不同的类型可以有不同的`impl`块。
 
-In object-oriented languages, classes can inherit behavior from their parents.
-However, this allows the attachment of not only additional behavior to particular members of a type class, but extra behavior as well.
+在面向对象的语言中，类可以从其父辈那里继承行为。
+然而，这不仅允许将额外的行为附加到类型类的特定成员上，而且还允许附加到额外的行为上。
 
-The nearest equivalent is the runtime polymorphism in Javascript and Python, where new members can be added to objects willy-nilly by any constructor.
-Unlike those languages, however, all of Rust's additional methods can be type checked when they are used, because their generics are statically defined. 
-That makes them more usable while remaining safe.
+最接近的是Javascript和Python中的运行时多态性，在那里，新的成员可以被任意构造器随意地添加到对象中。
+然而，与这些语言不同的是，Rust的所有额外方法在使用时都可以被类型检查，因为它们的泛型是静态定义的。
+这使得它们在保持安全的同时更具有实用性。
 
-## Example
+## 例子
 
-Suppose you are designing a storage server for a series of lab machines.
-Because of the software involved, there are two different protocols you need to support: BOOTP (for PXE network boot), and NFS (for remote mount storage).
+假设你正在为一系列的实验室机器设计一个存储服务器。
+由于涉及到软件，有两个不同的协议需要你支持。BOOTP（用于PXE网络启动），和NFS（用于远程挂载存储）。
 
-Your goal is to have one program, written in Rust, which can handle both of them. 
-It will have protocol handlers and listen for both kinds of requests. 
-The main application logic will then allow a lab administrator to configure storage and security controls for the actual files.
+你的目标是有一个用Rust编写的程序，可以处理这两个协议。
+它将有协议处理器，并监听两种请求。
+然后，主要的应用逻辑将允许实验室管理员为实际文件配置存储和安全控制。
 
-The requests from machines in the lab for files contain the same basic information, no matter what protocol they came from: an authentication method, and a file name to retrieve.  
-A straightforward implementation would look something like this:
+实验室里的机器对文件的请求包含相同的基本信息，无论它们来自什么协议：一个认证方法，和一个要检索的文件名。 
+一个直接的实现会是这样的：
 
 ```rust,ignore
 
@@ -47,14 +47,14 @@ struct FileDownloadRequest {
 }
 ```
 
-This design might work well enough. 
-But now suppose you needed to support adding metadata that was *protocol specific*. 
-For example, with NFS, you wanted to determine what their mount point was in order to enforce additional security rules.
+这种设计可能工作得足够好。
+但现在假设你需要支持添加*协议特定*的元数据。
+例如，对于NFS，你想确定他们的挂载点是什么，以便强制执行额外的安全规则。
 
-The way the current struct is designed leaves the protocol decision until runtime. 
-That means any method that applies to one protocol and not the other requires the programmer to do a runtime check.
+当前结构体的设计方式将协议决定权留给了运行时。
+这意味着任何适用于一种协议而不适用于另一种协议的方法都需要程序员在进行运行时检查。
 
-Here is how getting an NFS mount point would look:
+以下是获得NFS挂载点的代码：
 
 ```rust,ignore
 struct FileDownloadRequest {
@@ -74,15 +74,15 @@ impl FileDownloadRequest {
 }
 ```
 
-Every caller of `mount_point()` must check for `None` and write code to handle it. 
-This is true even if they know only NFS requests are ever used in a given code path!
+`mount_point()`的每个调用者都必须检查`None`并编写代码来处理它。
+即使他们知道在给定的代码路径中只有NFS请求会被使用。
 
-It would be far more optimal to cause a compile-time error if the different request types were confused. 
-After all, the entire path of the user's code, including what functions from the library they use, will know whether a request is an NFS request or a BOOTP request.
+如果不同的请求类型被混淆，产生编译时错误会更理想。
+毕竟，用户的整个代码路径，包括他们使用库中的哪些函数，都会知道一个请求是NFS请求还是BOOTP请求。
 
-In Rust, this is actually possible! The solution is to *add a generic type* in order to split the API.
+在Rust中，这其实是可以做到的! 解决办法是*添加一个泛型*，以便分割API。
 
-Here is what that looks like:
+下面是它的代码：
 
 ```rust
 use std::path::{Path, PathBuf};
@@ -165,7 +165,7 @@ fn main() {
 }
 ```
 
-With this approach, if the user were to make a mistake and use the wrong type;
+采用这种方法，如果用户使用了错误的类型：
 
 ```rust,ignore
 fn main() {
@@ -180,61 +180,60 @@ fn main() {
 }
 ```
 
-They would get a syntax error. 
-The type `FileDownloadRequest<Bootp>` does not implement `mount_point()`, only the type `FileDownloadRequest<Nfs>` does. 
-And that is created by the NFS module, not the BOOTP module of course!
+他们会得到一个语法错误。
+`FileDownloadRequest<Bootp>`类型没有实现`mount_point()`，只有`FileDownloadRequest<Nfs>`类型实现。
+而这是由NFS模块创建的，当然不是BOOTP模块!
 
-## Advantages
+## 优势
 
-First, it allows fields that are common to multiple states to be de-duplicated.
-By making the non-shared fields generic, they are implemented once.
+首先，它允许在多个状态下共有的字段被去掉重复。
+通过使共享字段泛型化，保证其只被实现一次。
 
-Second, it makes the `impl` blocks easier to read, because they are broken down by state. 
-Methods common to all states are typed once in one block, and methods unique to one state are in a separate block.
+其次，它使`impl`块更容易阅读，因为它们是按状态分解的。
+所有状态下通用的方法只在一个块中出现，而一个状态下特有的方法则在单独的块中出现。
 
-Both of these mean there are fewer lines of code, and they are better organized.
+这两点都意味着代码行数更少，而且组织得更好。
 
-## Disadvantages
+## 劣势
 
-This currently increases the size of the binary, due to the way monomorphization is implemented in the compiler. 
-Hopefully the implementation will be able to improve in the future.
+目前这增加了二进制文件的大小，这是由于编译器中实现单态化的方式造成的。
+希望这种实现方式在未来能够得到改善。
 
-## Alternatives
+## 替代方案
 
-* If a type seems to need a "split API" due to construction or partial initialization, consider the [Builder Pattern](../patterns/creational/builder.md) instead.
+* 如果一个类型由于构造或部分初始化而似乎需要一个“分开的API”，可以考虑用[生成器模式](../patterns/creational/builder.md)来代替。
 
-* If the API between types does not change -- only the behavior does -- then the [Strategy Pattern](../patterns/behavioural/strategy.md) is better used instead.
+* 如果类型之间的API不发生变化——只有行为发生变化——那么最好使用[策略模式](../patterns/behavioural/strategy.md)代替。
 
-## See also
+## 参见
 
-This pattern is used throughout the standard library:
+这种模式在整个标准库中都被使用：
 
-* `Vec<u8>` can be cast from a String, unlike every other type of `Vec<T>`.[^1]
-* They can also be cast into a binary heap, but only if they contain a type that implements the `Ord` trait.[^2]
-* The `to_string` method was specialized for `Cow` only of type `str`.[^3]
+* `Vec<u8>`可以从一个字符串中转换出，与其他类型的`Vec<T>`不同。[^1]
+* 当它们只包含一个实现了`Ord`trait的类型时，它们也可以被转换到二叉堆中。[^2]
+* `to_string`方法是只针对`str`类型的`Cow`。[^3]
 
-It is also used by several popular crates to allow API flexibility:
+它也被几个流行的crate使用，以允许API的灵活性:
 
-* The `embedded-hal` ecosystem used for embedded devices makes extensive use of this pattern. 
-For example, it allows statically verifying the configuration of device registers used to control embedded pins. 
-When a pin is put into a mode, it returns a `Pin<MODE>` struct, whose generic determines the functions usable in that mode, which are not on the `Pin` itself. [^4]
+* 用于嵌入式设备的`embedded-hal`生态系统广泛使用了这种模式。
+例如，它允许静态地验证用于控制嵌入式引脚的设备寄存器的配置。
+当一个引脚进入一个模式时，它返回一个`Pin<MODE>`结构体，其泛型决定了在该模式下可用的功能，这些功能不在`Pin`本身上。[^4]
 
-* The `hyper` HTTP client library uses this to expose rich APIs for different pluggable requests. 
-Clients with different connectors have different methods on them as well as different trait implementations, while a core set of methods apply to any connector. [^5]
+* `hyper`HTTP客户端库利用这一点为不同的可插拔请求提供了丰富的API。
+不同连接器的客户端有不同的方法以及不同的trait实现，而一组核心方法适用于任何连接器。[^5]
 
-* The "type state" pattern -- where an object gains and loses API based on an internal state or invariant -- is implemented in Rust using the same basic concept, and a slightly different technique. [^6]
+* “类型状态”模式——对象根据内部状态或不变量获得和失去API——在Rust中使用相同的基本概念和稍微不同的技术来实现。[^6]
 
-[^1]: See: [impl From\<CString\> for Vec\<u8\>]( https://doc.rust-lang.org/stable/src/std/ffi/c_str.rs.html#799-801)
+[^1]: [impl From\<CString\> for Vec\<u8\>]( https://doc.rust-lang.org/stable/src/std/ffi/c_str.rs.html#799-801)
 
-[^2]: See: [impl\<T\> From\<Vec\<T, Global\>\> for BinaryHeap\<T\>](https://doc.rust-lang.org/stable/src/alloc/collections/binary_heap.rs.html#1345-1354)
+[^2]: [impl\<T\> From\<Vec\<T, Global\>\> for BinaryHeap\<T\>](https://doc.rust-lang.org/stable/src/alloc/collections/binary_heap.rs.html#1345-1354)
 
-[^3]: See: [impl\<'\_\> ToString for Cow\<'\_, str>]( https://doc.rust-lang.org/stable/src/alloc/string.rs.html#2235-2240)
+[^3]: [impl\<'\_\> ToString for Cow\<'\_, str>]( https://doc.rust-lang.org/stable/src/alloc/string.rs.html#2235-2240)
 
-[^4]: Example: [https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html](https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html)
+[^4]: [https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html](https://docs.rs/stm32f30x-hal/0.1.0/stm32f30x_hal/gpio/gpioa/struct.PA0.html)
 
-[^5]: See: [https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html](https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html)
+[^5]: [https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html](https://docs.rs/hyper/0.14.5/hyper/client/struct.Client.html)
 
-[^6]: See: [The Case for the Type State Pattern]( https://web.archive.org/web/20210325065112/https://www.novatec-gmbh.de/en/blog/the-case-for-the-typestate-pattern-the-typestate-pattern-itself/)
-and[Rusty Typestate Series (an extensive thesis)](https://web.archive.org/web/20210328164854/https://rustype.github.io/notes/notes/rust-typestate-series/rust-typestate-index)
+[^6]: [类型状态模式的例子]( https://web.archive.org/web/20210325065112/https://www.novatec-gmbh.de/en/blog/the-case-for-the-typestate-pattern-the-typestate-pattern-itself/)和[Rusty Typestate系列（一篇扩展论文）](https://web.archive.org/web/20210328164854/https://rustype.github.io/notes/notes/rust-typestate-series/rust-typestate-index)
 
 > Latest commit 7e96169 on 15 Sep 2021

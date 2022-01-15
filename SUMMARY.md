@@ -46,7 +46,7 @@
 
 - [函数式编程](./functional/index.md)
   - [编程范式](./functional/paradigms.md)
-  - [Generics as Type Classes](./functional/generics-type-classes.md)
+  - [作为类型类的泛型](./functional/generics-type-classes.md)
 
 - [Additional Resources](./additional_resources/index.md)
   - [设计原则](./additional_resources/design-principles.md)
