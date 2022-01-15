@@ -44,9 +44,9 @@
   - [`#[deny(warnings)]`](./anti_patterns/deny-warnings.md)
   - [解引用多态性](./anti_patterns/deref.md)
 
-- [Functional Programming](./functional/index.md)
-  - [Programming paradigms](./functional/paradigms.md)
+- [函数式编程](./functional/index.md)
+  - [编程范式](./functional/paradigms.md)
   - [Generics as Type Classes](./functional/generics-type-classes.md)
 
 - [Additional Resources](./additional_resources/index.md)
-  - [Design principles](./additional_resources/design-principles.md)
+  - [设计原则](./additional_resources/design-principles.md)

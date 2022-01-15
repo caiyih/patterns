@@ -1,11 +1,10 @@
-# Programming paradigms
+# 编程范式
 
-One of the biggest hurdles to understanding functional programs when coming
-from an imperative background is the shift in thinking. Imperative programs
-describe __how__ to do something, whereas declarative programs describe
-__what__ to do. Let's sum the numbers from 1 to 10 to show this.
+理解函数式程序的最大障碍之一是命令式程序背景下的思维转变。
+命令式程序描述的是**如何**做某事，而声明式程序描述的是**什么**做什么。
+让我们把1到10的数字相加来说明这一点。
 
-## Imperative
+## 命令式
 
 ```rust
 let mut sum = 0;
@@ -15,11 +14,11 @@ for i in 1..11 {
 println!("{}", sum);
 ```
 
-With imperative programs, we have to play compiler to see what is happening.
-Here, we start with a `sum` of `0`.
-Next, we iterate through the range from 1 to 10.
-Each time through the loop, we add the corresponding value in the range.
-Then we print it out.
+对于命令式程序，我们必须模拟编译器来看看发生了什么。
+在这里，我们从一个值为`0`的`sum`开始。
+接下来，我们在1到10的范围内进行迭代。
+循环的每一次，我们在范围内加上相应的值。
+最后我们把它打印出来。
 
 | `i` | `sum` |
 |:---:|:-----:|
@@ -34,26 +33,25 @@ Then we print it out.
 |   9 |    45 |
 |  10 |    55 |
 
-This is how most of us start out programming. We learn that a program is a set
-of steps.
+这就是我们大多数人开始编程的方式。
+我们知道，一个程序就是一个步骤的集合。
 
-## Declarative
+## 声明式
 
 ```rust
 println!("{}", (1..11).fold(0, |a, b| a + b));
 ```
 
-Whoa! This is really different! What's going on here?
-Remember that with declarative programs we are describing __what__ to do,
-rather than __how__ to do it. `fold` is a function that [composes](https://en.wikipedia.org/wiki/Function_composition)
-functions. The name is a convention from Haskell.
+哇! 这真的很不一样! 这里发生了什么？
+请记住，在声明性程序中，我们描述的是**做什么**，而不是**如何**做它。
+`fold`是一个可以[组合](https://en.wikipedia.org/wiki/Function_composition)函数的函数。
+这个名字是来自Haskell的一个惯例。
 
-Here, we are composing functions of addition (this closure: `|a, b| a + b`)
-with a range from 1 to 10. The `0` is the starting point, so `a` is `0` at
-first. `b` is the first element of the range, `1`. `0 + 1 = 1` is the result.
-So now we `fold` again, with `a = 1`, `b = 2` and so `1 + 2 = 3` is the next
-result. This process continues until we get to the last element in the range,
-`10`.
+在这里，我们正在组成加法的函数（闭包：`|a, b| a + b`），范围是从1到10。
+`0`是起点，所以`a`一开始就是`0`。
+`b`是范围的第一个元素，`1`。`0 + 1 = 1`是结果。
+所以现在我们再次`fold`，`a = 1`，`b = 2`，所以`1 + 2 = 3`是下一个结果。
+这个过程一直持续到我们得到范围内的最后一个元素，`10`。
 
 | `a` | `b` | result |
 |:---:|:---:|:------:|
@@ -67,3 +65,5 @@ result. This process continues until we get to the last element in the range,
 |  28 |   8 |     36 |
 |  36 |   9 |     45 |
 |  45 |  10 |     55 |
+
+> Latest commit 2cd70a5 on 22 Jan 2021
