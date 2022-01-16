@@ -1,20 +1,16 @@
-# 简体中文翻译 状态：施工中
-# Rust Design Patterns
+# Rust设计模式
 
-An open source book about design patterns and idioms in the Rust programming
-language that you can read [here](https://rust-unofficial.github.io/patterns/).
+一本关于Rust编程语言设计模式和惯常做法开源书的简体中文译本，你可以在[这里](https://fomalhauthmj.github.io/patterns/)阅读。
+本书的原始仓库为[Rust Design Patterns](https://github.com/rust-unofficial/patterns)，感谢每一位开源贡献者！
 
-## Contributing
+## 贡献方式
 
-You are missing content in this repository that can be helpful for others, and
-you are eager to explain it? Awesome! We are always happy about new contributions
-(e.g. elaboration or corrections on certain topics) to this project.
+欢迎提出Issues和PR来做出贡献，包括但不限于：通知原始仓库的更新内容，校正翻译的错误或不足之处。
 
-You can check the [Umbrella issue](https://github.com/rust-unofficial/patterns/issues/116)
-for all the patterns, anti-patterns, and idioms that could be added.
 
-We suggest reading our [Contribution guide](./CONTRIBUTING.md) to get more information
-on how contributing to this repository works.
+你可以查看原始仓库的[Umbrella issue](https://github.com/rust-unofficial/patterns/issues/116)以了解所有可能被添加的模式、反面模式和惯常做法。
+
+建议阅读原始仓库的[贡献指南](./CONTRIBUTING.md)，以获得更多关于如何为这个仓库做贡献的信息。
 
 ## Building with mdbook
 

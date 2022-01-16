@@ -48,5 +48,5 @@
   - [编程范式](./functional/paradigms.md)
   - [作为类型类的泛型](./functional/generics-type-classes.md)
 
-- [Additional Resources](./additional_resources/index.md)
+- [额外资源](./additional_resources/index.md)
   - [设计原则](./additional_resources/design-principles.md)
